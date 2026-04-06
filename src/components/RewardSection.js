@@ -77,8 +77,7 @@ export default function RewardSection() {
           <div className="text-white text-center md:text-left">
             <h3 className="text-4xl md:text-6xl font-[1000] italic uppercase leading-none tracking-tighter mb-2">
               {/* Actual Sum dikhega (Jaise 200+ FREE COINS) */}
-              {coinsSum > 0 ? `${coinsSum}+` : 'NEW'} FREE COINS &<br/> 
-              <span className="text-yellow-400">DAILY GIFTS</span>
+              {coinsSum > 0 ? `${coinsSum}+` : 'NEW'} FREE COINS &
             </h3>
             
             {/* 🏷️ TAGS LOGIC: Showing actual counts */}
