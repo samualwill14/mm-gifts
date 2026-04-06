@@ -16,7 +16,7 @@ export default function Home() {
 
       {/* 1. NOTIFICATION BAR */}
       <NotificationBar
-        text="🎁 NEW: Legendary Booster Rewards are Live!"
+        text="🎁 NEW: Free Match Masters Gifts Daily!"
         buttonText="Claim"
         buttonLink="#reward-links"
         backgroundColor="#d13a04"
