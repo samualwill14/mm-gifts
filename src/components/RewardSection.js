@@ -99,7 +99,7 @@ export default function RewardSection() {
 
         <div className="mt-6 md:mt-0 relative z-10">
   <a
-    href="https://your-link.com"
+    href="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
     rel="nofollow noopener noreferrer"
     target="_blank"
     className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold py-2.5 px-5 rounded-full shadow-md hover:translate-y-[2px] transition-all text-sm md:text-base uppercase"
