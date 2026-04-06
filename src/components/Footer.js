@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">MMfreegifts.de</h3>
             <p className="text-gray-400">
-              Find and Collect Daily Monopoly Go Free Dice, Stickers, and Gifts.
+              Find and Collect Daily Match Masters Free Gifts, Coins, Boosters, perks and More. Updated daily
             </p>
           </div>
           <div>
