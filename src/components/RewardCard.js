@@ -25,7 +25,7 @@ export default function RewardCard({ reward }) {
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
   // 1. Ab 6 din tak ke links dikhayega (0 to 5 = 6 Days)
-  if (diffDays > 5) return null; 
+  if (diffDays > 6) return null; 
 
   // 2. Saare links Active dikhenge (No Expired)
   const isActive = true;
