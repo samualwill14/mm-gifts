@@ -12,7 +12,7 @@ async function fetchRewards() {
       const formattedRewards = data.rewards
         .filter(reward => reward.is_active === true)
         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-        .slice(0, 15)
+        .slice(0, 30)
         .map(reward => ({
           id: reward.id,
           type: reward.type || 'coins',
