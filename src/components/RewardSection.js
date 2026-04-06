@@ -2,99 +2,89 @@ import { useState } from 'react';
 import RewardCard from './RewardCard';
 import { staticRewards } from '@/data/static-rewards';
 
-export default function RewardSection() {
-  const [rewards] = useState(staticRewards || []);
+export default function RewardCard({ reward }) {
+  const [isCollected, setIsCollected] = useState(false);
 
-  // 📅 LOGIC: Banner calculation (Sirf Aaj aur Kal ka total)
+  useEffect(() => {
+    const collected = localStorage.getItem(`mm_reward_${reward.id}`);
+    if (collected) setIsCollected(true);
+  }, [reward.id]);
+
+  // 📅 DATE CALCULATION
+  const rewardDate = new Date(reward.created_at);
   const today = new Date();
-  const yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
-  const tStr = today.toISOString().split('T')[0];
-  const yStr = yesterday.toISOString().split('T')[0];
+  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const startOfReward = new Date(rewardDate.getFullYear(), rewardDate.getMonth(), rewardDate.getDate());
+  const diffTime = startOfToday - startOfReward;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-  const recentRewards = rewards.filter(r => 
-    r.created_at.startsWith(tStr) || r.created_at.startsWith(yStr)
-  );
+  // 1. Filter: 6 din tak ke links dikhao
+  if (diffDays > 5) return null; 
 
-  const coinsSum = recentRewards
-    .filter(r => r.type.toLowerCase().includes('coin'))
-    .reduce((sum, r) => sum + (parseInt(r.amount) || 0), 0);
+  const handleCollect = () => {
+    setIsCollected(true);
+    localStorage.setItem(`mm_reward_${reward.id}`, 'true');
+  };
 
-  const giftCounts = {};
-  recentRewards
-    .filter(r => !r.type.toLowerCase().includes('coin'))
-    .forEach(r => {
-      const type = r.type;
-      giftCounts[type] = (giftCounts[type] || 0) + 1;
-    });
+  const getTheme = (type) => {
+    const t = type?.toLowerCase() || '';
+    if (t.includes('coin')) return { bg: 'from-[#fbc02d] to-[#f9a825]', shadow: 'shadow-[0_8px_0_#b45309]', label: 'COLLECT COINS' };
+    if (t.includes('booster')) return { bg: 'from-[#a855f7] to-[#7e22ce]', shadow: 'shadow-[0_8px_0_#581c87]', label: 'COLLECT BOOSTER' };
+    if (t.includes('perk')) return { bg: 'from-[#22c55e] to-[#15803d]', shadow: 'shadow-[0_8px_0_#14532d]', label: 'COLLECT PERKS' };
+    if (t.includes('sticker')) return { bg: 'from-[#ec4899] to-[#be185d]', shadow: 'shadow-[0_8px_0_#831843]', label: 'COLLECT STICKER' };
+    return { bg: 'from-[#3b82f6] to-[#2563eb]', shadow: 'shadow-[0_8px_0_#1e3a8a]', label: 'COLLECT REWARD' };
+  };
 
-  const todayDisplayDate = new Date().toLocaleDateString('en-US', { 
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-  });
-
+  const theme = getTheme(reward.type);
+  
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-6xl font-[1000] text-[#0f172a] tracking-tight mb-2 uppercase">
-          Today's Match Masters Rewards
-        </h2>
-        <p className="text-blue-600 font-black text-xs uppercase tracking-[0.25em] italic">
-          Last Verified Update: {todayDisplayDate}
-        </p>
-      </div>
-
-      {/* 🚀 ORIGINAL GLOSSY BANNER (Size & Design Restored) 🚀 */}
-      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-[40px] p-6 md:p-10 mb-20 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between group border-b-8 border-b-blue-900">
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-
-        <div className="flex items-center gap-8 relative z-10">
-          <div className="bg-white/10 backdrop-blur-xl p-1 rounded-3xl border border-white/20 shadow-2xl">
-             <div className="bg-white p-4 rounded-2xl">
-               <img src="/gift-box.png" alt="Gifts" className="w-16 h-16 md:w-20 md:h-20 drop-shadow-xl" />
-             </div>
+    <div className="bg-white rounded-[35px] shadow-sm border border-gray-100 p-6 flex flex-col items-center relative transition-all hover:shadow-md border-b-4 border-b-gray-200">
+      
+      {/* Header Metadata */}
+      <div className="w-full flex justify-between items-start mb-6">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-inner overflow-hidden">
+            <img src="/gift-box.png" alt="Gift Icon" className="w-10 h-10 object-contain" />
           </div>
-          <div className="text-white text-center md:text-left">
-            <h3 className="text-4xl md:text-6xl font-[1000] italic uppercase leading-none tracking-tighter mb-2">
-              {coinsSum > 0 ? `${coinsSum}+` : 'NEW'} FREE COINS &<br/> 
+          <div>
+            <h3 className="text-lg font-black text-[#1a1a1a] leading-none mb-1 uppercase italic tracking-tighter">
+              {reward.amount} FREE {reward.type}
             </h3>
-            
-            <div className="flex flex-wrap gap-2 mt-3 justify-center md:justify-start">
-              {Object.entries(giftCounts).length > 0 ? (
-                Object.entries(giftCounts).map(([type, count], index) => (
-                  <span key={index} className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-sm">
-                    {count} {type}{count > 1 ? 'S' : ''}
-                  </span>
-                ))
-              ) : (
-                <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-sm">
-                  NEW GIFTS LIVE
-                </span>
-              )}
+            <div className="flex items-center gap-1">
+              <span className="text-[9px] font-black text-green-600 uppercase tracking-widest">Verified Gift</span>
+              <span className="text-[9px] text-blue-500 font-bold flex items-center gap-0.5 whitespace-nowrap">
+                • <MousePointer2 size={8}/> {reward.clicks || Math.floor(Math.random() * 50) + 20} clicks
+              </span>
             </div>
           </div>
         </div>
-
-        <div className="mt-6 md:mt-0 relative z-10">
-          <a
-            href="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
-            rel="nofollow noopener noreferrer"
-            target="_blank"
-            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-black py-2.5 px-5 rounded-full shadow-md hover:translate-y-[2px] transition-all text-sm md:text-base uppercase"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M4 20h16" />
-            </svg>
-            Download & Collect
-          </a>
+        
+        <div className="bg-gray-50 px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-gray-100 shadow-inner">
+           <Timer size={12} className="text-green-500" />
+           <span className="text-[10px] font-bold text-gray-500 uppercase italic whitespace-nowrap">
+             Workable
+           </span>
         </div>
       </div>
 
-      {/* REWARDS GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {rewards.map((reward) => (
-          <RewardCard key={reward.id} reward={reward} />
-        ))}
-      </div>
-    </section>
+      {/* 🚀 ORIGINAL 3D BUTTON (ALWAYS COLORFUL/CLICKABLE) 🚀 */}
+      <a
+        href={reward.reward_link}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        onClick={handleCollect}
+        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center no-underline flex items-center justify-center gap-2 border-t-2 border-white/30 ${
+          isCollected 
+            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80' 
+            : `bg-gradient-to-r ${theme.bg} ${theme.shadow} hover:brightness-105 active:shadow-none active:translate-y-[8px]`
+        }`}
+      >
+        {isCollected ? <><CheckCircle2 size={18}/> COLLECTED</> : theme.label}
+      </a>
+
+      <p className="mt-5 text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">
+        {new Date(reward.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </p>
+    </div>
   );
 }
