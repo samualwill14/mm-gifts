@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <Head>
-        <title>{`Match Masters Free Gifts & Coins [${currentDate}] – Claim 1K+ Daily`}</title>
+        <title>{`Match Masters Free Gifts & Coins [${currentDate}] – Claim 1000+ Daily`}</title>
         <meta name="description" content="Collect your daily Match Masters free boosters and coins. Working gift links updated daily." />
       </Head>
 
