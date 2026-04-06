@@ -43,7 +43,7 @@ export default function HowToGetFreeCoinsMM() {
         <meta property="og:title" content="How to Get Free Coins on Match Masters? (9 Ways Explained)" />
         <meta property="og:description" content="Master Match Masters with these 9 proven ways to get free coins and boosters. Daily updated guide for pro players." />
         <meta property="og:url" content="https://mmfreegifts.de/tips-&-tricks/how-to-get-free-coins-on-match-masters/" />
-        <meta property="og:image" content="https://mmfreegifts.de/upload/mm-coins-guide-hero.png" />
+        <meta property="og:image" content="/mm-free-coins-guide.webp" />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="mmfreegifts" />
         
@@ -118,7 +118,7 @@ export default function HowToGetFreeCoinsMM() {
             {/* Featured Image */}
             <div className="rounded-[2.5rem] overflow-hidden shadow-2xl mb-10 bg-white border-4 border-white">
               <Image 
-                src="https://images.t2u.io/6f477002-8618-466d-8833-289b4f73809b.png"
+                src="/mm-free-coins-guide.webp"
                 alt="How to Get Free Coins on Match Masters Guide" 
                 width={1024} 
                 height={576} 
