@@ -14,21 +14,17 @@ export default function RewardCard({ reward }) {
     localStorage.setItem(`mm_reward_${reward.id}`, 'true');
   };
 
-  // 📅 DATE CALCULATION LOGIC
+  // 📅 NEW ACCURATE DATE LOGIC
   const rewardDate = new Date(reward.created_at);
   const today = new Date();
   
-  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const startOfReward = new Date(rewardDate.getFullYear(), rewardDate.getMonth(), rewardDate.getDate());
-  
-  const diffTime = startOfToday - startOfReward;
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  // Cutoff set kar rahe hain: Aaj se thik 6 din pehle ki shuruat tak
+  const cutoffDate = new Date();
+  cutoffDate.setDate(today.getDate() - 6);
+  cutoffDate.setHours(0, 0, 0, 0); 
 
-  // 1. Ab 6 din tak ke links dikhayega (0 to 5 = 6 Days)
-  if (diffDays > 6) return null; 
-
-  // 2. Saare links Active dikhenge (No Expired)
-  const isActive = true;
+  // 1. Agar link 6 din se zyada purana hai toh hide kar do
+  if (rewardDate < cutoffDate) return null; 
 
   const getTheme = (type) => {
     const t = type?.toLowerCase() || '';
