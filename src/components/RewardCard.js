@@ -9,21 +9,26 @@ export default function RewardCard({ reward }) {
     if (collected) setIsCollected(true);
   }, [reward.id]);
 
-  // 📅 DATE CALCULATION
-  const rewardDate = new Date(reward.created_at);
-  const today = new Date();
-  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const startOfReward = new Date(rewardDate.getFullYear(), rewardDate.getMonth(), rewardDate.getDate());
-  const diffTime = startOfToday - startOfReward;
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-  // 1. Filter: 6 din tak ke links dikhao
-  if (diffDays > 5) return null; 
-
   const handleCollect = () => {
     setIsCollected(true);
     localStorage.setItem(`mm_reward_${reward.id}`, 'true');
   };
+
+  // 📅 DATE CALCULATION LOGIC
+  const rewardDate = new Date(reward.created_at);
+  const today = new Date();
+  
+  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const startOfReward = new Date(rewardDate.getFullYear(), rewardDate.getMonth(), rewardDate.getDate());
+  
+  const diffTime = startOfToday - startOfReward;
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  // 1. Ab 6 din tak ke links dikhayega (0 to 5 = 6 Days)
+  if (diffDays > 5) return null; 
+
+  // 2. Saare links Active dikhenge (No Expired)
+  const isActive = true;
 
   const getTheme = (type) => {
     const t = type?.toLowerCase() || '';
@@ -31,13 +36,18 @@ export default function RewardCard({ reward }) {
     if (t.includes('booster')) return { bg: 'from-[#a855f7] to-[#7e22ce]', shadow: 'shadow-[0_8px_0_#581c87]', label: 'COLLECT BOOSTER' };
     if (t.includes('perk')) return { bg: 'from-[#22c55e] to-[#15803d]', shadow: 'shadow-[0_8px_0_#14532d]', label: 'COLLECT PERKS' };
     if (t.includes('sticker')) return { bg: 'from-[#ec4899] to-[#be185d]', shadow: 'shadow-[0_8px_0_#831843]', label: 'COLLECT STICKER' };
+
     return { bg: 'from-[#3b82f6] to-[#2563eb]', shadow: 'shadow-[0_8px_0_#1e3a8a]', label: 'COLLECT REWARD' };
   };
 
   const theme = getTheme(reward.type);
   
+  const formattedDate = new Date(reward.created_at).toLocaleString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true
+  });
+
   return (
-    <div className="bg-white rounded-[35px] shadow-sm border border-gray-100 p-6 flex flex-col items-center relative transition-all hover:shadow-md border-b-4 border-b-gray-200">
+    <div className="bg-white rounded-[35px] shadow-sm border border-gray-100 p-6 flex flex-col items-center relative transition-all border-b-4 border-b-gray-200 hover:shadow-md">
       
       {/* Header Metadata */}
       <div className="w-full flex justify-between items-start mb-6">
@@ -46,11 +56,13 @@ export default function RewardCard({ reward }) {
             <img src="/gift-box.png" alt="Gift Icon" className="w-10 h-10 object-contain" />
           </div>
           <div>
-            <h3 className="text-lg font-black text-[#1a1a1a] leading-none mb-1 uppercase italic tracking-tighter">
+            <h3 className="text-lg font-black leading-none mb-1 uppercase italic tracking-tighter text-[#1a1a1a]">
               {reward.amount} FREE {reward.type}
             </h3>
             <div className="flex items-center gap-1">
-              <span className="text-[9px] font-black text-green-600 uppercase tracking-widest">Verified Gift</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-green-600">
+                Verified Gift
+              </span>
               <span className="text-[9px] text-blue-500 font-bold flex items-center gap-0.5 whitespace-nowrap">
                 • <MousePointer2 size={8}/> {reward.clicks || Math.floor(Math.random() * 50) + 20} clicks
               </span>
@@ -58,15 +70,15 @@ export default function RewardCard({ reward }) {
           </div>
         </div>
         
-        <div className="bg-gray-50 px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-gray-100 shadow-inner">
+        <div className="px-3 py-1.5 rounded-full flex items-center gap-1.5 border shadow-inner bg-gray-50 border-gray-100">
            <Timer size={12} className="text-green-500" />
-           <span className="text-[10px] font-bold text-gray-500 uppercase italic whitespace-nowrap">
-             Workable
+           <span className="text-[10px] font-bold uppercase italic whitespace-nowrap text-gray-500">
+             Active
            </span>
         </div>
       </div>
 
-      {/* 🚀 ORIGINAL 3D BUTTON (ALWAYS COLORFUL/CLICKABLE) 🚀 */}
+      {/* 🚀 THE 3D BUTTON (ALWAYS CLICKABLE & COLORFUL) 🚀 */}
       <a
         href={reward.reward_link}
         target="_blank"
@@ -82,7 +94,7 @@ export default function RewardCard({ reward }) {
       </a>
 
       <p className="mt-5 text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">
-        {new Date(reward.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+        {formattedDate}
       </p>
     </div>
   );
