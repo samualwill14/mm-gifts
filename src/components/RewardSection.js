@@ -4,7 +4,7 @@ import RewardCard from './RewardCard';
 export default function RewardSection() {
   const [rewards, setRewards] = useState([]);
   const [coinsSum, setCoinsSum] = useState(0);
-  const [todayOthers, setTodayOthers] = useState([]); 
+  const [giftCounts, setGiftCounts] = useState({}); // Stores counts like { Booster: 2, Perk: 2 }
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,34 +14,35 @@ export default function RewardSection() {
         if (data.success) {
           setRewards(data.rewards);
           
-          // 📊 NEW LOGIC: Last 24 Hours Calculation
-          const now = new Date();
-          const twentyFourHoursAgo = new Date(now.getTime() - (24 * 60 * 60 * 1000));
+          // 📅 LOGIC: Get Today (6th) and Yesterday (5th) date strings
+          const today = new Date();
+          const yesterday = new Date();
+          yesterday.setDate(today.getDate() - 1);
 
-          // Filter rewards created within the last 24 hours
-          const latestRewards = data.rewards.filter(r => {
-            const rewardDate = new Date(r.created_at);
-            return rewardDate >= twentyFourHoursAgo;
-          });
+          const tStr = today.toISOString().split('T')[0]; // "2024-04-06"
+          const yStr = yesterday.toISOString().split('T')[0]; // "2024-04-05"
 
-          // Agar pichle 24h mein kuch nahi hai (rare case), toh latest 5 rewards pakad lo 
-          // taaki banner khali na dikhe
-          const displayRewards = latestRewards.length > 0 
-            ? latestRewards 
-            : data.rewards.slice(0, 5);
+          // 1. Filter rewards for ONLY these 2 days
+          const recentRewards = data.rewards.filter(r => 
+            r.created_at.startsWith(tStr) || r.created_at.startsWith(yStr)
+          );
           
-          // 1. Calculate Coins Total from last 24h (or latest fallback)
-          const totalCoins = displayRewards
+          // 2. Sum actual Coins for these 2 days
+          const totalCoins = recentRewards
             .filter(r => r.type.toLowerCase().includes('coin'))
             .reduce((sum, r) => sum + (parseInt(r.amount) || 0), 0);
           setCoinsSum(totalCoins);
 
-          // 2. Identify Other Gifts from last 24h (Unique types)
-          const others = displayRewards
+          // 3. Count other Gifts (Boosters, Perks, etc.) correctly
+          const counts = {};
+          recentRewards
             .filter(r => !r.type.toLowerCase().includes('coin'))
-            .map(r => r.type);
+            .forEach(r => {
+              const type = r.type;
+              counts[type] = (counts[type] || 0) + 1;
+            });
           
-          setTodayOthers([...new Set(others)]); 
+          setGiftCounts(counts); // Ab counts mein { "Booster": 2, "Perk": 2 } jaisa data hoga
         }
         setLoading(false);
       });
@@ -63,7 +64,7 @@ export default function RewardSection() {
         </p>
       </div>
 
-      {/* 🚀 GLOSSY BANNER 🚀 */}
+      {/* 🚀 BANNER 🚀 */}
       <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-[40px] p-6 md:p-10 mb-20 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between group border-b-8 border-b-blue-900">
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -75,28 +76,23 @@ export default function RewardSection() {
           </div>
           <div className="text-white text-center md:text-left">
             <h3 className="text-4xl md:text-6xl font-[1000] italic uppercase leading-none tracking-tighter mb-2">
-              {/* If coinsSum is 0 because of API timing, we show 1000+ as default or the actual sum */}
-              {coinsSum > 0 ? `${coinsSum}+` : '1000+'} FREE COINS &<br/> 
+              {/* Actual Sum dikhega (Jaise 200+ FREE COINS) */}
+              {coinsSum > 0 ? `${coinsSum}+` : 'NEW'} FREE COINS &<br/> 
               <span className="text-yellow-400">DAILY GIFTS</span>
             </h3>
             
-            {/* 🏷️ TAGS LOGIC */}
+            {/* 🏷️ TAGS LOGIC: Showing actual counts */}
             <div className="flex flex-wrap gap-2 mt-3 justify-center md:justify-start">
-              {todayOthers.length > 0 ? (
-                todayOthers.map((gift, index) => (
+              {Object.entries(giftCounts).length > 0 ? (
+                Object.entries(giftCounts).map(([type, count], index) => (
                   <span key={index} className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-sm">
-                    1 {gift}
+                    {count} {type}{count > 1 ? 'S' : ''}
                   </span>
                 ))
               ) : (
-                <>
-                  <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-sm">
-                    Stickers
-                  </span>
-                  <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-sm">
-                    Boosters
-                  </span>
-                </>
+                <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/20 shadow-sm">
+                  NEW GIFTS LIVE
+                </span>
               )}
             </div>
           </div>
