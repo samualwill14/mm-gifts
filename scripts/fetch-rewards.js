@@ -56,7 +56,7 @@ export const staticRewards = ${JSON.stringify(formattedRewards, null, 2)};
           type: "coins",
           amount: 50,
           description: "",
-          reward_link: "https://eccisland.is/sgh-coins/reward.php?slug=fallback_1",
+          reward_link: "https://eccisland.is/mm-gifts/reward.php?slug=fallback_1",
           is_active: true,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
