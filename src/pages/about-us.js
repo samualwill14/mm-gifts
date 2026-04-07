@@ -1,16 +1,24 @@
+import Head from 'next/head';
 import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Target, HeartHandshake, ShieldCheck, Gamepad2, CheckCircle2 } from 'lucide-react';
 
-export const metadata = {
-  title: "About Us - MMfreegifts",
-  description: "Learn about MMfreegifts - Your trusted source for daily free Gifts links, stickers, and rewards for Match Masters game.",
-};
-
 export default function AboutUs() {
   return (
     <>
+      <Head>
+        <title>About Us - MMfreegifts</title>
+        <meta name="description" content="Learn about MMfreegifts - Your trusted source for daily free Gifts links, stickers, and rewards for Match Masters game." />
+        <link rel="canonical" href="https://mmfreegifts.de/about-us" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="About Us - MMfreegifts" />
+        <meta property="og:description" content="Learn about MMfreegifts - Your trusted source for daily free Gifts links, stickers, and rewards for Match Masters game." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mmfreegifts.de/about-us" />
+      </Head>
+
       {/* Top Notification Bar */}
       <NotificationBar
         text="🎲 FREE Match Masters Gifts (Fastest Updates)"
@@ -144,7 +152,6 @@ export default function AboutUs() {
           </div>
         </main>
 
-        {/* Same Footer */}
         <Footer />
       </div>
     </>
