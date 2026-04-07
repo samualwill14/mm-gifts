@@ -1,39 +1,43 @@
-const EXTERNAL_DATA_URL = 'https://mmfreegifts.de';
+const BASE_URL = 'https://mmfreegifts.de';
 
 function generateSiteMap(currentDate) {
+  const pages = [
+    { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage
+    { url: '/tips-&amp;-tricks', priority: '0.8', changefreq: 'daily' },
+    { url: '/tips-&amp;-tricks/how-to-get-free-coins-on-match-masters', priority: '0.7', changefreq: 'weekly' },
+    { url: '/tips-&amp;-tricks/get-free-stickers-match-masters', priority: '0.7', changefreq: 'weekly' },
+    { url: '/tips-&amp;-tricks/match-masters-perks-guide', priority: '0.7', changefreq: 'weekly' },
+    { url: '/about-us', priority: '0.5', changefreq: 'monthly' },
+    { url: '/contact-us', priority: '0.5', changefreq: 'monthly' },
+    { url: '/privacy-policy', priority: '0.5', changefreq: 'monthly' },
+  ];
+
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <url>
-       <loc>${EXTERNAL_DATA_URL}</loc>
-       <lastmod>${currentDate}</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>1.0</priority>
-     </url>
-     
-     {/* Aap yahan apne dusre pages bhi add kar sakte hain */}
-     <url>
-       <loc>${EXTERNAL_DATA_URL}/tips-&amp;-tricks</loc>
-       <lastmod>${currentDate}</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8</priority>
-     </url>
+     ${pages
+       .map((page) => {
+         return `
+       <url>
+           <loc>${BASE_URL}${page.url}</loc>
+           <lastmod>${currentDate}</lastmod>
+           <changefreq>${page.changefreq}</changefreq>
+           <priority>${page.priority}</priority>
+       </url>
+     `;
+       })
+       .join('')}
    </urlset>
  `;
 }
 
-function SiteMap() {
-  // getServerSideProps handle karega sabkuch
-}
+function SiteMap() {}
 
 export async function getServerSideProps({ res }) {
-  // Aaj ki date nikalne ke liye (YYYY-MM-DD format)
   const today = new Date().toISOString().split('T')[0];
 
-  // Hum XML generate kar rahe hain
   const sitemap = generateSiteMap(today);
 
   res.setHeader('Content-Type', 'text/xml');
-  // XML response bhej rahe hain
   res.write(sitemap);
   res.end();
 
