@@ -57,7 +57,7 @@ export default function HowToGetFreeCoinsMM() {
       <NotificationBar
         text="🎁 NEW: Daily Match Masters Free Coins & Boosters (April 2026)"
         buttonText="Collect Now"
-        buttonLink="/"
+        buttonLink="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
         backgroundColor="#1e40af"
         textColor="#FFFFFF"
         buttonColor="#FACC15"
