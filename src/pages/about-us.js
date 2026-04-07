@@ -17,6 +17,13 @@ export default function AboutUs() {
         <meta property="og:description" content="Learn about MMfreegifts - Your trusted source for daily free Gifts links, stickers, and rewards for Match Masters game." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mmfreegifts.de/about-us" />
+
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="SGH Free Coins" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       {/* Top Notification Bar */}
