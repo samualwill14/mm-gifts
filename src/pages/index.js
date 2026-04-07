@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      import Head from "next/head";
+      
 
 <Head>
   <title>{`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`}</title>
