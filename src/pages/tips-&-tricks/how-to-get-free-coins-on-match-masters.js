@@ -38,19 +38,21 @@ export default function HowToGetFreeCoinsMM() {
         <meta name="description" content="Discover 9 effective ways to earn free coins on Match Masters. Learn about daily links, events, tournaments, and pro strategies to boost your game." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://mmfreegifts.de/tips-&-tricks/how-to-get-free-coins-on-match-masters/" />
-        
-        {/* Open Graph / Facebook */}
         <meta property="og:title" content="How to Get Free Coins on Match Masters? (9 Ways Explained)" />
         <meta property="og:description" content="Master Match Masters with these 9 proven ways to get free coins and boosters. Daily updated guide for pro players." />
         <meta property="og:url" content="https://mmfreegifts.de/tips-&-tricks/how-to-get-free-coins-on-match-masters/" />
         <meta property="og:image" content="/mm-free-coins-guide.webp" />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="mmfreegifts" />
-        
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="How to Get Free Coins on Match Masters? [9 Pro Ways]" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="SGH Free Coins" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       {/* Top Notification Bar - Match Masters Blue Theme */}
