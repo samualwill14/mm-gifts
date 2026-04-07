@@ -49,7 +49,7 @@ export default function TipsTricksIndex() {
       <NotificationBar
         text="🎁 NEW: Legendary Booster Rewards are Live!"
         buttonText="Claim Now"
-        buttonLink="/"
+        buttonLink="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
         backgroundColor="#1e40af"
         textColor="#FFFFFF"
         buttonColor="#FACC15"
