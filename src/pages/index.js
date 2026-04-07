@@ -27,6 +27,13 @@ export default function Home() {
   <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
   <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
   <meta name="twitter:image" content="/match-masters-free-gifts.webp" />
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="SGH Free Coins" />
+  <link rel="manifest" href="/site.webmanifest" />
 </Head>
 
       {/* 1. NOTIFICATION BAR */}
