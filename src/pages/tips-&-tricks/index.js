@@ -37,13 +37,19 @@ export default function TipsTricksIndex() {
         <title>Match Masters Tips & Tricks | Master Your Game</title>
         <meta name="description" content="Expert strategies for Match Masters. Learn how to get free coins, stickers, and master all perks with our professional guides." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://mmfreegifts.de/tips-&-tricks/" />
-        
+        <link rel="canonical" href="https://mmfreegifts.de/tips-&-tricks/" />        
         <meta property="og:title" content="Match Masters Tips & Tricks | Pro Winning Strategies" />
         <meta property="og:description" content="Master your Match Masters game with expert guides on free coins, rare stickers, and booster management." />
         <meta property="og:url" content="https://mmfreegifts.de/tips-&-tricks/" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="mmfreegifts" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="SGH Free Coins" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       <NotificationBar
