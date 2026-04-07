@@ -1,16 +1,30 @@
+import Head from 'next/head';
 import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ShieldCheck, User, Monitor, Cookie, Share2, Mail, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
-export const metadata = {
-  title: "Privacy Policy - mmfreegifts",
-  description: "Privacy Policy for Match Masters Free Gifts - Learn how we collect, use, and protect your personal information when using our website.",
-};
-
 export default function PrivacyPolicy() {
   return (
     <>
+      <Head>
+        <title>Privacy Policy - mmfreegifts</title>
+        <meta name="description" content="Privacy Policy for Match Masters Free Gifts - Learn how we collect, use, and protect your personal information when using our website." />
+        <link rel="canonical" href="https://mmfreegifts.de/privacy-policy" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Privacy Policy - mmfreegifts" />
+        <meta property="og:description" content="Privacy Policy for Match Masters Free Gifts - Learn how we collect, use, and protect your personal information when using our website." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mmfreegifts.de/privacy-policy" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="SGH Free Coins" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
+
       {/* Top Notification Bar */}
       <NotificationBar
         text="🎲 FREE Match Masters Gifts(Fastest Updates)"
