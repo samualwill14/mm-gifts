@@ -36,7 +36,7 @@ async function fetchRewards() {
         fs.mkdirSync(dataDir, { recursive: true });
       }
       
-      const jsContent = `// Auto-generated from eccisland.is/sgh-coins/api/rewards.php
+      const jsContent = `// Auto-generated from eccisland.is/mm-gifts/api/rewards.php
 // Last updated: ${new Date().toISOString()}
 export const staticRewards = ${JSON.stringify(formattedRewards, null, 2)};
 `;
