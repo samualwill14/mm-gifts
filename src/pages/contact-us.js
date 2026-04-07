@@ -1,16 +1,9 @@
+import Head from 'next/head';
 import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm'; 
 import { Mail, Share2, Link as LinkIcon, MessageCircle } from 'lucide-react';
-
-export const metadata = {
-  title: "Contact Us - mmfreegifts",
-  description: "Have questions about Match Masters free Gifts links? Need support? We're always here to help you out!",
-  alternates: {
-    canonical: "https://mmfreegifts.de/contact-us/",
-  }
-};
 
 const FacebookIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -27,6 +20,24 @@ const TwitterIcon = ({ className }) => (
 export default function ContactUs() {
   return (
     <>
+      <Head>
+        <title>Contact Us - mmfreegifts</title>
+        <meta name="description" content="Have questions about Match Masters free Gifts links? Need support? We're always here to help you out!" />
+        <link rel="canonical" href="https://mmfreegifts.de/contact-us/" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Contact Us - mmfreegifts" />
+        <meta property="og:description" content="Have questions about Match Masters free Gifts links? Need support? We're always here to help you out!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mmfreegifts.de/contact-us/" />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="SGH Free Coins" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
+
       <NotificationBar
         text="🎲 FREE Match Masters Gifts (Fastest Updates)"
         buttonText="Collect Now"
@@ -70,6 +81,7 @@ export default function ContactUs() {
                 <p className="text-gray-500 text-sm">We'll respond within 24-48 hours</p>
               </div>
 
+              {/* Follow Card */}
               <div className="bg-white rounded-2xl shadow-xl p-8 text-center transform transition-transform hover:-translate-y-2 border-b-4 border-cyan-500">
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Share2 className="w-8 h-8 text-cyan-600" />
@@ -88,6 +100,7 @@ export default function ContactUs() {
                 </div>
               </div>
 
+              {/* Links Card */}
               <div className="bg-white rounded-2xl shadow-xl p-8 text-center transform transition-transform hover:-translate-y-2 border-b-4 border-blue-600">
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
                   <LinkIcon className="w-8 h-8 text-blue-600" />
@@ -98,6 +111,7 @@ export default function ContactUs() {
               </div>
             </div>
 
+            {/* Message Form Box */}
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-4xl mx-auto border border-gray-100">
               <div className="p-8 md:p-12">
                 <div className="text-center mb-10">
