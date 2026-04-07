@@ -48,7 +48,7 @@ export default function MatchMastersPerksGuide() {
       <NotificationBar
         text="⚡ NEW: Collect Free Perks & Boosters (Daily Update)"
         buttonText="Get Now"
-        buttonLink="/"
+        buttonLink="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
         backgroundColor="#1e40af"
         textColor="#FFFFFF"
         buttonColor="#FACC15"
