@@ -215,7 +215,7 @@ export default function MatchMastersPerksGuide() {
                       Boost your collection of stickers by smart trading, playing games consistently, and community engagement. Create a steady coin collection by inviting friends, joining a team, and winning levels.
                     </p>
                     <Link href="/" className="inline-flex items-center gap-3 bg-yellow-400 text-blue-950 font-black py-4 px-10 rounded-full hover:bg-yellow-300 transition-all hover:scale-105 shadow-xl uppercase tracking-widest text-sm">
-                      Get Daily Free Perks <ChevronRight className="w-6 h-6" />
+                      Free Match masters Gifts Links <ChevronRight className="w-6 h-6" />
                     </Link>
                   </div>
                 </div>
