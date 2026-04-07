@@ -9,10 +9,24 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      <Head>
-        <title>{`Match Masters Free Gifts & Coins [${currentDate}] – Claim 1000+ Daily`}</title>
-        <meta name="description" content="Collect your daily Match Masters free boosters and coins. Working gift links updated daily." />
-      </Head>
+      import Head from "next/head";
+
+<Head>
+  <title>{`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`}</title>
+  <meta name="description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+  <link rel="canonical" href="https://mmfreegifts.de/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
+  <meta property="og:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+  <meta property="og:url" content="https://mmfreegifts.de/" />
+  <meta property="og:site_name" content="MM Free Gifts" />
+  <meta property="og:image" content="/match-masters-free-gifts.webp" />
+  <meta property="og:image:alt" content="Match Masters Free Gifts Daily Rewards" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
+  <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+  <meta name="twitter:image" content="/match-masters-free-gifts.webp" />
+</Head>
 
       {/* 1. NOTIFICATION BAR */}
       <NotificationBar
