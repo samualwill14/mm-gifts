@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Timer, CheckCircle2, MousePointer2 } from 'lucide-react';
 
-export default function RewardCard({ reward, onGiftClick }) {
+export default function RewardCard({ reward }) {
   const [isCollected, setIsCollected] = useState(false);
 
   useEffect(() => {
@@ -9,26 +9,21 @@ export default function RewardCard({ reward, onGiftClick }) {
     if (collected) setIsCollected(true);
   }, [reward.id]);
 
-  const handleCollectClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (isCollected) return;
-    
+  const handleCollect = () => {
     setIsCollected(true);
     localStorage.setItem(`mm_reward_${reward.id}`, 'true');
-    
-    if (onGiftClick) {
-      onGiftClick(e, reward.reward_link);
-    }
   };
 
+  // 📅 NEW ACCURATE DATE LOGIC
   const rewardDate = new Date(reward.created_at);
   const today = new Date();
+  
+  // Cutoff set kar rahe hain: Aaj se thik 6 din pehle ki shuruat tak
   const cutoffDate = new Date();
   cutoffDate.setDate(today.getDate() - 6);
   cutoffDate.setHours(0, 0, 0, 0); 
 
+  // 1. Agar link 6 din se zyada purana hai toh hide kar do
   if (rewardDate < cutoffDate) return null; 
 
   const getTheme = (type) => {
@@ -37,6 +32,7 @@ export default function RewardCard({ reward, onGiftClick }) {
     if (t.includes('booster')) return { bg: 'from-[#a855f7] to-[#7e22ce]', shadow: 'shadow-[0_8px_0_#581c87]', label: 'COLLECT BOOSTER' };
     if (t.includes('perk')) return { bg: 'from-[#22c55e] to-[#15803d]', shadow: 'shadow-[0_8px_0_#14532d]', label: 'COLLECT PERKS' };
     if (t.includes('sticker')) return { bg: 'from-[#ec4899] to-[#be185d]', shadow: 'shadow-[0_8px_0_#831843]', label: 'COLLECT STICKER' };
+
     return { bg: 'from-[#3b82f6] to-[#2563eb]', shadow: 'shadow-[0_8px_0_#1e3a8a]', label: 'COLLECT REWARD' };
   };
 
@@ -48,6 +44,8 @@ export default function RewardCard({ reward, onGiftClick }) {
 
   return (
     <div className="bg-white rounded-[35px] shadow-sm border border-gray-100 p-6 flex flex-col items-center relative transition-all border-b-4 border-b-gray-200 hover:shadow-md">
+      
+      {/* Header Metadata */}
       <div className="w-full flex justify-between items-start mb-6">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-inner overflow-hidden">
@@ -76,17 +74,20 @@ export default function RewardCard({ reward, onGiftClick }) {
         </div>
       </div>
 
-      <button
-        onClick={handleCollectClick}
-        disabled={isCollected}
-        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center flex items-center justify-center gap-2 border-t-2 border-white/30 ${
+      {/* 🚀 THE 3D BUTTON (ALWAYS CLICKABLE & COLORFUL) 🚀 */}
+      <a
+        href={reward.reward_link}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        onClick={handleCollect}
+        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center no-underline flex items-center justify-center gap-2 border-t-2 border-white/30 ${
           isCollected 
-            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80 cursor-not-allowed' 
-            : `bg-gradient-to-r ${theme.bg} ${theme.shadow} hover:brightness-105 active:shadow-none active:translate-y-[8px] cursor-pointer`
+            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80' 
+            : `bg-gradient-to-r ${theme.bg} ${theme.shadow} hover:brightness-105 active:shadow-none active:translate-y-[8px]`
         }`}
       >
         {isCollected ? <><CheckCircle2 size={18}/> COLLECTED</> : theme.label}
-      </button>
+      </a>
 
       <p className="mt-5 text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">
         {formattedDate}
