@@ -4,118 +4,26 @@ import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import RewardSection from '@/components/RewardSection';
 import Footer from '@/components/Footer';
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-  
-  // Loader state - yeh popup nahi hai, inline hai
-  const [showLoader, setShowLoader] = useState(false);
-  const [pendingLink, setPendingLink] = useState('');
-  const [countdown, setCountdown] = useState(5);
 
-  // Handle gift link click
+  // Handle gift link click - NO POPUP BLOCKER
   const handleGiftClick = useCallback((e, linkUrl) => {
     e.preventDefault();
     e.stopPropagation();
     
-    setPendingLink(linkUrl);
-    setShowLoader(true);
-    setCountdown(5);
-    
-    // Start countdown timer
-    const interval = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          // Link ko dusre tab mein open karo - normal way, popup blocker nahi ayega
-          window.open(linkUrl, '_blank');
-          // Loader hide karo
-          setTimeout(() => {
-            setShowLoader(false);
-            setPendingLink('');
-          }, 300);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    
-    // Store interval to cleanup if needed
-    window._redirectInterval = interval;
-  }, []);
-
-  // Close loader manually
-  const closeLoader = useCallback(() => {
-    if (window._redirectInterval) {
-      clearInterval(window._redirectInterval);
-    }
-    setShowLoader(false);
-    setPendingLink('');
-    setCountdown(5);
-  }, []);
+    // Redirect to intermediate page with the target URL as query parameter
+    // Isse popup blocker nahi ayega kyunki ye same-site navigation hai
+    router.push(`/redirect?url=${encodeURIComponent(linkUrl)}`);
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
-      {/* INLINE LOADER - Yeh popup nahi hai, page ke andar dikhega */}
-      {showLoader && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 text-center transform transition-all duration-300 scale-100">
-            {/* Loader GIF */}
-            <div className="flex justify-center mb-6">
-              <img 
-                src="/loader.gif" 
-                alt="Loading..." 
-                className="w-24 h-24 object-contain"
-              />
-            </div>
-            
-            {/* Countdown Timer */}
-            <div className="mb-4">
-              <span className="text-5xl font-bold text-blue-600">{countdown}</span>
-              <span className="text-xl text-gray-600 ml-2">seconds</span>
-            </div>
-            
-            {/* Progress Bar */}
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
-              <div 
-                className="bg-blue-600 h-full rounded-full transition-all duration-1000 ease-linear"
-                style={{ width: `${((5 - countdown) / 5) * 100}%` }}
-              ></div>
-            </div>
-            
-            {/* SEO Friendly Message */}
-            <h3 className="text-xl font-bold text-gray-800 mb-3">
-              🎁 Preparing Your Reward...
-            </h3>
-            <p className="text-gray-600 mb-4">
-              Please wait while we prepare your <strong className="text-blue-600">Match Masters Free Gift</strong>! 
-              You will receive <strong className="text-green-600">Coins, Boosters & Stickers</strong> instantly.
-            </p>
-            <p className="text-sm text-gray-500 mb-6">
-              ⚡ <strong>Pro Tip:</strong> Bookmark this page and claim daily rewards to stay ahead in the game!
-            </p>
-            
-            {/* SEO Keywords Row */}
-            <div className="flex flex-wrap justify-center gap-2 mb-4 pt-2 border-t border-gray-100">
-              <span className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full">#FreeCoins</span>
-              <span className="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">#MatchMastersGifts</span>
-              <span className="text-xs bg-orange-50 text-orange-600 px-2 py-1 rounded-full">#DailyBoosters</span>
-              <span className="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded-full">#FreeRewards</span>
-            </div>
-            
-            {/* Manual Close Button */}
-            <button 
-              onClick={closeLoader}
-              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
-
       <Head>
         <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
         <meta name="description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
