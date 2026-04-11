@@ -13,29 +13,23 @@ export default function RewardCard({ reward, onGiftClick }) {
     e.preventDefault();
     e.stopPropagation();
     
-    // Agar already collected hai toh kuch mat karo
     if (isCollected) return;
     
-    // Local storage mein mark as collected
     setIsCollected(true);
     localStorage.setItem(`mm_reward_${reward.id}`, 'true');
     
-    // Popup show karne ke liye parent function call karo
     if (onGiftClick) {
       onGiftClick(e, reward.reward_link);
     }
   };
 
-  // 📅 NEW ACCURATE DATE LOGIC
+  // Date logic
   const rewardDate = new Date(reward.created_at);
   const today = new Date();
-  
-  // Cutoff set kar rahe hain: Aaj se thik 6 din pehle ki shuruat tak
   const cutoffDate = new Date();
   cutoffDate.setDate(today.getDate() - 6);
   cutoffDate.setHours(0, 0, 0, 0); 
 
-  // 1. Agar link 6 din se zyada purana hai toh hide kar do
   if (rewardDate < cutoffDate) return null; 
 
   const getTheme = (type) => {
@@ -44,7 +38,6 @@ export default function RewardCard({ reward, onGiftClick }) {
     if (t.includes('booster')) return { bg: 'from-[#a855f7] to-[#7e22ce]', shadow: 'shadow-[0_8px_0_#581c87]', label: 'COLLECT BOOSTER' };
     if (t.includes('perk')) return { bg: 'from-[#22c55e] to-[#15803d]', shadow: 'shadow-[0_8px_0_#14532d]', label: 'COLLECT PERKS' };
     if (t.includes('sticker')) return { bg: 'from-[#ec4899] to-[#be185d]', shadow: 'shadow-[0_8px_0_#831843]', label: 'COLLECT STICKER' };
-
     return { bg: 'from-[#3b82f6] to-[#2563eb]', shadow: 'shadow-[0_8px_0_#1e3a8a]', label: 'COLLECT REWARD' };
   };
 
@@ -56,8 +49,6 @@ export default function RewardCard({ reward, onGiftClick }) {
 
   return (
     <div className="bg-white rounded-[35px] shadow-sm border border-gray-100 p-6 flex flex-col items-center relative transition-all border-b-4 border-b-gray-200 hover:shadow-md">
-      
-      {/* Header Metadata */}
       <div className="w-full flex justify-between items-start mb-6">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-inner overflow-hidden">
@@ -86,7 +77,6 @@ export default function RewardCard({ reward, onGiftClick }) {
         </div>
       </div>
 
-      {/* 🚀 THE 3D BUTTON - AB POPUP KE SAATH 🚀 */}
       <button
         onClick={handleCollectClick}
         disabled={isCollected}
