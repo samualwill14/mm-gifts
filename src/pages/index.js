@@ -45,7 +45,7 @@ export default function Home() {
     window._popupInterval = interval;
   }, []);
 
-  // Close popup manually if needed (optional - can be used for X button)
+  // Close popup manually if needed
   const closePopup = useCallback(() => {
     if (window._popupInterval) {
       clearInterval(window._popupInterval);
@@ -105,7 +105,7 @@ export default function Home() {
               <span className="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded-full">#FreeRewards</span>
             </div>
             
-            {/* Manual Close Link - Optional */}
+            {/* Manual Close Link */}
             <button 
               onClick={closePopup}
               className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
@@ -179,7 +179,6 @@ export default function Home() {
           </section>
 
           <div id="reward-links">
-            {/* Pass the click handler to RewardSection */}
             <RewardSection onGiftClick={handleGiftClick} />
           </div>
 
