@@ -14,7 +14,7 @@ export default function Home() {
 
 <Head>
   <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
-  <meta name="description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+  <meta name="description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Keys, Stickers, Rewards & Codes. Collect the exclusive gifts with daily updated links." />
   <link rel="canonical" href="https://mmfreegifts.de/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
