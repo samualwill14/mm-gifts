@@ -6,9 +6,9 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/tips-&-tricks/', label: 'Tips & Tricks' },
-    { href: '/about-us/', label: 'About Us' },
+    { href: '/', label: 'Free Gifts' },
+    { href: '/tips-&-tricks/how-to-get-free-coins-on-match-masters', label: 'Free Coins' },
+    { href: '/tips-&-tricks/get-free-stickers-match-masters', label: 'Free Stickers' },
     { href: '/contact-us/', label: 'Contact Us' },
     { href: '/privacy-policy/', label: 'Privacy Policy' },
   ];
