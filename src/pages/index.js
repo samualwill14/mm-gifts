@@ -4,39 +4,141 @@ import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import RewardSection from '@/components/RewardSection';
 import Footer from '@/components/Footer';
+import { useState, useCallback } from 'react';
 
 export default function Home() {
   const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  
+  // Popup state
+  const [showPopup, setShowPopup] = useState(false);
+  const [pendingLink, setPendingLink] = useState('');
+  const [countdown, setCountdown] = useState(5);
+
+  // Handle gift link click
+  const handleGiftClick = useCallback((e, linkUrl) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    setPendingLink(linkUrl);
+    setShowPopup(true);
+    setCountdown(5);
+    
+    // Start countdown timer
+    const interval = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          // Open link in new tab
+          window.open(linkUrl, '_blank');
+          // Close popup after short delay
+          setTimeout(() => {
+            setShowPopup(false);
+            setPendingLink('');
+          }, 500);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    
+    // Store interval to cleanup if needed
+    window._popupInterval = interval;
+  }, []);
+
+  // Close popup manually if needed (optional - can be used for X button)
+  const closePopup = useCallback(() => {
+    if (window._popupInterval) {
+      clearInterval(window._popupInterval);
+    }
+    setShowPopup(false);
+    setPendingLink('');
+    setCountdown(5);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
+      {/* Popup Modal with Loader */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-all duration-300">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 text-center transform transition-all duration-300 scale-100">
+            {/* Loader GIF */}
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/loader.gif" 
+                alt="Loading..." 
+                className="w-24 h-24 object-contain"
+              />
+            </div>
+            
+            {/* Countdown Timer */}
+            <div className="mb-4">
+              <span className="text-5xl font-bold text-blue-600">{countdown}</span>
+              <span className="text-xl text-gray-600 ml-2">seconds</span>
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
+              <div 
+                className="bg-blue-600 h-full rounded-full transition-all duration-1000 ease-linear"
+                style={{ width: `${((5 - countdown) / 5) * 100}%` }}
+              ></div>
+            </div>
+            
+            {/* SEO Friendly Message */}
+            <h3 className="text-xl font-bold text-gray-800 mb-3">
+              🎁 Redirecting to Your Reward...
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Please wait while we prepare your <strong className="text-blue-600">Match Masters Free Gift</strong>! 
+              You will receive <strong className="text-green-600">Coins, Boosters & Stickers</strong> instantly.
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              ⚡ <strong>Pro Tip:</strong> Bookmark this page and claim daily rewards to stay ahead in the game!
+            </p>
+            
+            {/* SEO Keywords Row */}
+            <div className="flex flex-wrap justify-center gap-2 mb-4 pt-2 border-t border-gray-100">
+              <span className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full">#FreeCoins</span>
+              <span className="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">#MatchMastersGifts</span>
+              <span className="text-xs bg-orange-50 text-orange-600 px-2 py-1 rounded-full">#DailyBoosters</span>
+              <span className="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded-full">#FreeRewards</span>
+            </div>
+            
+            {/* Manual Close Link - Optional */}
+            <button 
+              onClick={closePopup}
+              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
-<Head>
-  <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
-  <meta name="description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
-  <link rel="canonical" href="https://mmfreegifts.de/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
-  <meta property="og:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
-  <meta property="og:url" content="https://mmfreegifts.de/" />
-  <meta property="og:site_name" content="MM Free Gifts" />
-  <meta property="og:image" content="/match-masters-free-gifts.webp" />
-  <meta property="og:image:alt" content="Match Masters Free Gifts Daily Rewards" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
-  <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
-  <meta name="twitter:image" content="/match-masters-free-gifts.webp" />
+      <Head>
+        <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
+        <meta name="description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <link rel="canonical" href="https://mmfreegifts.de/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
+        <meta property="og:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <meta property="og:url" content="https://mmfreegifts.de/" />
+        <meta property="og:site_name" content="MM Free Gifts" />
+        <meta property="og:image" content="/match-masters-free-gifts.webp" />
+        <meta property="og:image:alt" content="Match Masters Free Gifts Daily Rewards" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
+        <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <meta name="twitter:image" content="/match-masters-free-gifts.webp" />
 
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="MM Free Gifts" />
-  <link rel="manifest" href="/site.webmanifest" />
- 
-  
-</Head>
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MM Free Gifts" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
 
       {/* 1. NOTIFICATION BAR */}
       <NotificationBar
@@ -77,7 +179,8 @@ export default function Home() {
           </section>
 
           <div id="reward-links">
-            <RewardSection />
+            {/* Pass the click handler to RewardSection */}
+            <RewardSection onGiftClick={handleGiftClick} />
           </div>
 
           <section className="py-16 px-4 bg-white">
