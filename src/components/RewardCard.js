@@ -23,7 +23,6 @@ export default function RewardCard({ reward, onGiftClick }) {
     }
   };
 
-  // Date logic
   const rewardDate = new Date(reward.created_at);
   const today = new Date();
   const cutoffDate = new Date();
