@@ -2,7 +2,7 @@ import { useState } from 'react';
 import RewardCard from './RewardCard';
 import { staticRewards } from '@/data/static-rewards';
 
-export default function RewardSection() {
+export default function RewardSection({ onGiftClick }) {
   const [rewards] = useState(staticRewards || []);
 
   // 📅 LOGIC: Banner calculation (Sirf Aaj aur Kal ka total)
@@ -32,6 +32,15 @@ export default function RewardSection() {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
   });
 
+  // Banner button ke liye handler
+  const handleBannerClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (onGiftClick) {
+      onGiftClick(e, "https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ");
+    }
+  };
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
@@ -43,7 +52,7 @@ export default function RewardSection() {
         </p>
       </div>
 
-      {/* 🚀 ORIGINAL GLOSSY BANNER (Size & Design Restored) 🚀 */}
+      {/* 🚀 ORIGINAL GLOSSY BANNER - AB POPUP KE SAATH 🚀 */}
       <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-[40px] p-6 md:p-10 mb-20 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between group border-b-8 border-b-blue-900">
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -75,24 +84,22 @@ export default function RewardSection() {
         </div>
 
         <div className="mt-6 md:mt-0 relative z-10">
-          <a
-            href="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
-            rel="nofollow noopener noreferrer"
-            target="_blank"
-            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-black py-2.5 px-5 rounded-full shadow-md hover:translate-y-[2px] transition-all text-sm md:text-base uppercase"
+          <button
+            onClick={handleBannerClick}
+            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-black py-2.5 px-5 rounded-full shadow-md hover:translate-y-[2px] transition-all text-sm md:text-base uppercase cursor-pointer"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M4 20h16" />
             </svg>
             Download & Collect
-          </a>
+          </button>
         </div>
       </div>
 
       {/* REWARDS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {rewards.map((reward) => (
-          <RewardCard key={reward.id} reward={reward} />
+          <RewardCard key={reward.id} reward={reward} onGiftClick={onGiftClick} />
         ))}
       </div>
     </section>
