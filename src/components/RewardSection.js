@@ -5,7 +5,6 @@ import { staticRewards } from '@/data/static-rewards';
 export default function RewardSection({ onGiftClick }) {
   const [rewards] = useState(staticRewards || []);
 
-  // 📅 LOGIC: Banner calculation (Sirf Aaj aur Kal ka total)
   const today = new Date();
   const yesterday = new Date();
   yesterday.setDate(today.getDate() - 1);
@@ -32,7 +31,6 @@ export default function RewardSection({ onGiftClick }) {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
   });
 
-  // Banner button ke liye handler
   const handleBannerClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -52,7 +50,6 @@ export default function RewardSection({ onGiftClick }) {
         </p>
       </div>
 
-      {/* 🚀 ORIGINAL GLOSSY BANNER - AB POPUP KE SAATH 🚀 */}
       <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-[40px] p-6 md:p-10 mb-20 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between group border-b-8 border-b-blue-900">
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -96,7 +93,6 @@ export default function RewardSection({ onGiftClick }) {
         </div>
       </div>
 
-      {/* REWARDS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {rewards.map((reward) => (
           <RewardCard key={reward.id} reward={reward} onGiftClick={onGiftClick} />
