@@ -60,11 +60,9 @@ export default function Home() {
           >
             <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
               <div className="space-y-6">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                 Match Masters Free Daily Gifts ({new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}) - Claim Free Coins & Boosters Now
-                </h1>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-white uppercase tracking-tight"> Match Masters <br /> <span className="text-blue-400 font-black">Free Daily Gifts ({new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })})</span> </h1>
                 <p className="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto italic">
-                  We share daily updated Match Masters coins, boosters, and gifts. MM Rewards, Boosters, Perks, Coins, Spins, and Stickers, and event tips so you can keep playing nonstop. Everything you see on this website is safe, verified, and player-tested before we publish it.
+                 Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Keys, Stickers, Rewards & Codes. Collect the exclusive gifts with daily updated links.
                 </p>
                 <div className="flex justify-center gap-4">
                   <a href="#reward-links" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105">
