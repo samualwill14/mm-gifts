@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Timer, CheckCircle2, MousePointer2 } from 'lucide-react';
 
-export default function RewardCard({ reward }) {
+export default function RewardCard({ reward, onGiftClick }) {
   const [isCollected, setIsCollected] = useState(false);
 
   useEffect(() => {
@@ -9,9 +9,21 @@ export default function RewardCard({ reward }) {
     if (collected) setIsCollected(true);
   }, [reward.id]);
 
-  const handleCollect = () => {
+  const handleCollectClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Agar already collected hai toh kuch mat karo
+    if (isCollected) return;
+    
+    // Local storage mein mark as collected
     setIsCollected(true);
     localStorage.setItem(`mm_reward_${reward.id}`, 'true');
+    
+    // Popup show karne ke liye parent function call karo
+    if (onGiftClick) {
+      onGiftClick(e, reward.reward_link);
+    }
   };
 
   // 📅 NEW ACCURATE DATE LOGIC
@@ -74,20 +86,18 @@ export default function RewardCard({ reward }) {
         </div>
       </div>
 
-      {/* 🚀 THE 3D BUTTON (ALWAYS CLICKABLE & COLORFUL) 🚀 */}
-      <a
-        href={reward.reward_link}
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-        onClick={handleCollect}
-        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center no-underline flex items-center justify-center gap-2 border-t-2 border-white/30 ${
+      {/* 🚀 THE 3D BUTTON - AB POPUP KE SAATH 🚀 */}
+      <button
+        onClick={handleCollectClick}
+        disabled={isCollected}
+        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center flex items-center justify-center gap-2 border-t-2 border-white/30 ${
           isCollected 
-            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80' 
-            : `bg-gradient-to-r ${theme.bg} ${theme.shadow} hover:brightness-105 active:shadow-none active:translate-y-[8px]`
+            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80 cursor-not-allowed' 
+            : `bg-gradient-to-r ${theme.bg} ${theme.shadow} hover:brightness-105 active:shadow-none active:translate-y-[8px] cursor-pointer`
         }`}
       >
         {isCollected ? <><CheckCircle2 size={18}/> COLLECTED</> : theme.label}
-      </a>
+      </button>
 
       <p className="mt-5 text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">
         {formattedDate}
