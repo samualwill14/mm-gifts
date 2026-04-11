@@ -40,9 +40,9 @@ export default function Home() {
 
       {/* 1. NOTIFICATION BAR */}
       <NotificationBar
-        text="🎁 NEW: Free Match Masters Gifts Daily!"
+        text="🎁 NEW: Free Match Masters Reward Keys Codes!"
         buttonText="Claim"
-        buttonLink="#reward-links"
+        buttonLink="https://eccisland.is/mmkeys"
         backgroundColor="#d13a04"
         textColor="#FFFFFF"
         buttonColor="#FFFFFF"
