@@ -4,26 +4,144 @@ import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import RewardSection from '@/components/RewardSection';
 import Footer from '@/components/Footer';
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { useState, useCallback, useRef } from 'react';
 
 export default function Home() {
-  const router = useRouter();
   const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  
+  // Loader state
+  const [showLoader, setShowLoader] = useState(false);
+  const [countdown, setCountdown] = useState(5);
+  const pendingLinkRef = useRef(null);
+  const intervalRef = useRef(null);
 
   // Handle gift link click - NO POPUP BLOCKER
   const handleGiftClick = useCallback((e, linkUrl) => {
     e.preventDefault();
     e.stopPropagation();
     
-    // Redirect to intermediate page with the target URL as query parameter
-    // Isse popup blocker nahi ayega kyunki ye same-site navigation hai
-    router.push(`/redirect?url=${encodeURIComponent(linkUrl)}`);
-  }, [router]);
+    // Store the link
+    pendingLinkRef.current = linkUrl;
+    
+    // Show loader
+    setShowLoader(true);
+    setCountdown(5);
+    
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    // Start countdown
+    intervalRef.current = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+          
+          // ✅ TRICK: Create a hidden anchor and click it programmatically
+          // This NEVER gets blocked by popup blockers because it's a direct user action simulation
+          const link = document.createElement('a');
+          link.href = pendingLinkRef.current;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          // Hide it
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          // Click it
+          link.click();
+          // Remove it
+          document.body.removeChild(link);
+          
+          // Hide loader after link opens
+          setTimeout(() => {
+            setShowLoader(false);
+            pendingLinkRef.current = null;
+          }, 500);
+          
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }, []);
+
+  // Close loader manually
+  const closeLoader = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setShowLoader(false);
+    pendingLinkRef.current = null;
+    setCountdown(5);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
+      {/* Loader Overlay - Page ke upar, lekin page visible rahega */}
+      {showLoader && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 text-center transform transition-all duration-300 scale-100">
+            {/* Loader GIF */}
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/loader.gif" 
+                alt="Loading..." 
+                className="w-24 h-24 object-contain"
+              />
+            </div>
+            
+            {/* Countdown Timer */}
+            <div className="mb-4">
+              <span className="text-5xl font-bold text-blue-600">{countdown}</span>
+              <span className="text-xl text-gray-600 ml-2">seconds</span>
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-6 overflow-hidden">
+              <div 
+                className="bg-blue-600 h-full rounded-full transition-all duration-1000 ease-linear"
+                style={{ width: `${((5 - countdown) / 5) * 100}%` }}
+              ></div>
+            </div>
+            
+            {/* SEO Friendly Message */}
+            <h3 className="text-xl font-bold text-gray-800 mb-3">
+              🎁 Preparing Your Match Masters Reward...
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Please wait while we prepare your <strong className="text-blue-600">Free Coins, Boosters & Stickers</strong>!
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              ⚡ <strong>Pro Tip:</strong> Bookmark this page and claim daily rewards to stay ahead!
+            </p>
+            
+            {/* SEO Keywords */}
+            <div className="flex flex-wrap justify-center gap-2 mb-4 pt-2 border-t border-gray-100">
+              <span className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full">#MatchMastersFreeGifts</span>
+              <span className="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">#FreeCoins</span>
+              <span className="text-xs bg-orange-50 text-orange-600 px-2 py-1 rounded-full">#DailyBoosters</span>
+              <span className="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded-full">#FreeRewards</span>
+            </div>
+            
+            {/* SEO Links */}
+            <div className="text-xs text-gray-400 mt-3">
+              🔥 Claim your Match Masters daily gifts - Updated {currentDate}
+            </div>
+            
+            {/* Cancel Button */}
+            <button 
+              onClick={closeLoader}
+              className="text-sm text-gray-400 hover:text-gray-600 transition-colors mt-4"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       <Head>
         <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
         <meta name="description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
