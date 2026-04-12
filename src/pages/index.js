@@ -60,7 +60,7 @@ export default function Home() {
           >
             <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
               <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-white uppercase tracking-tight"> Match Masters <br /> <span className="text-blue-400 font-black">Free Daily Gifts ({new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })})</span> </h1>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-white uppercase tracking-tight"> Match Masters <br /> <span className="text-blue-400 font-black">Free Daily Gifts</span> </h1>
                 <p className="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto italic">
                  Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Keys, Stickers, Rewards & Codes. Collect the exclusive gifts with daily updated links.
                 </p>
