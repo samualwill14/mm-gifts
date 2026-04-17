@@ -5,38 +5,46 @@ import Navbar from '@/components/Navbar';
 import RewardSection from '@/components/RewardSection';
 import Footer from '@/components/Footer';
 
-export default function Home() {
-  const currentDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+// ✅ यह फंक्शन - बिल्कुल solitaire वाले जैसा ही
+const getUSADate = () => {
+  const options = { timeZone: 'Europe/London', year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date().toLocaleDateString('en-US', options);
+};
 
+// ✅ SSR के लिए - बिल्कुल solitaire वाले जैसा ही
+export async function getServerSideProps() {
+  const currentDate = getUSADate();
+  return { props: { currentDate } };
+}
+
+// ✅ Component - currentDate prop के साथ
+export default function Home({ currentDate }) {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
+      <Head>
+        <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
+        <meta name="description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Keys, Stickers, Rewards & Codes. Collect the exclusive gifts with daily updated links." />
+        <link rel="canonical" href="https://mmfreegifts.de/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
+        <meta property="og:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <meta property="og:url" content="https://mmfreegifts.de/" />
+        <meta property="og:site_name" content="MM Free Gifts" />
+        <meta property="og:image" content="/match-masters-free-gifts.webp" />
+        <meta property="og:image:alt" content="Match Masters Free Gifts Daily Rewards" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
+        <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <meta name="twitter:image" content="/match-masters-free-gifts.webp" />
 
-<Head>
-  <title>{`Match Masters Free Daily Gifts [${currentDate}]| Collect Boosters & Coins`}</title>
-  <meta name="description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Keys, Stickers, Rewards & Codes. Collect the exclusive gifts with daily updated links." />
-  <link rel="canonical" href="https://mmfreegifts.de/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
-  <meta property="og:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
-  <meta property="og:url" content="https://mmfreegifts.de/" />
-  <meta property="og:site_name" content="MM Free Gifts" />
-  <meta property="og:image" content="/match-masters-free-gifts.webp" />
-  <meta property="og:image:alt" content="Match Masters Free Gifts Daily Rewards" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
-  <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
-  <meta name="twitter:image" content="/match-masters-free-gifts.webp" />
-
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="MM Free Gifts" />
-  <link rel="manifest" href="/site.webmanifest" />
- 
-  
-</Head>
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MM Free Gifts" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
 
       {/* 1. NOTIFICATION BAR */}
       <NotificationBar
