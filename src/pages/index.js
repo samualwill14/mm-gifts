@@ -5,19 +5,16 @@ import Navbar from '@/components/Navbar';
 import RewardSection from '@/components/RewardSection';
 import Footer from '@/components/Footer';
 
-// ✅ यह फंक्शन - बिल्कुल solitaire वाले जैसा ही
 const getUSADate = () => {
   const options = { timeZone: 'Europe/London', year: 'numeric', month: 'long', day: 'numeric' };
   return new Date().toLocaleDateString('en-US', options);
 };
 
-// ✅ SSR के लिए - बिल्कुल solitaire वाले जैसा ही
 export async function getServerSideProps() {
   const currentDate = getUSADate();
   return { props: { currentDate } };
 }
 
-// ✅ Component - currentDate prop के साथ
 export default function Home({ currentDate }) {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
