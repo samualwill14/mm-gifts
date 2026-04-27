@@ -5,6 +5,31 @@ import { staticRewards } from '@/data/static-rewards';
 export default function RewardSection() {
   const [rewards] = useState(staticRewards || []);
   const [redirectReward, setRedirectReward] = useState(null);
+  
+  // 🔥 ADD THESE STATES (Solitaire wale)
+  const [displayRewards, setDisplayRewards] = useState([]);
+  const [lastUpdateTime, setLastUpdateTime] = useState('');
+
+  // 📅 LOGIC: 6-day filter (Solitaire jaisa)
+  useEffect(() => {
+    const now = new Date();
+    const sixDaysAgo = new Date();
+    sixDaysAgo.setDate(now.getDate() - 6);
+
+    const filtered = rewards.filter(reward => {
+      const rewardDate = new Date(reward.created_at);
+      return rewardDate >= sixDaysAgo;
+    }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    setDisplayRewards(filtered);
+
+    if (filtered.length > 0) {
+      const latest = new Date(filtered[0].created_at);
+      setLastUpdateTime(latest.toLocaleDateString('en-US', { 
+        month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+      }));
+    }
+  }, [rewards]);
 
   // 📅 LOGIC: Banner calculation (Sirf Aaj aur Kal ka total)
   const today = new Date();
@@ -14,26 +39,26 @@ export default function RewardSection() {
   const yStr = yesterday.toISOString().split('T')[0];
 
   const recentRewards = rewards.filter(r => 
-    r.created_at.startsWith(tStr) || r.created_at.startsWith(yStr)
+    r.created_at?.startsWith(tStr) || r.created_at?.startsWith(yStr)
   );
 
   const coinsSum = recentRewards
-    .filter(r => r.type.toLowerCase().includes('coin'))
+    .filter(r => r.type?.toLowerCase().includes('coin'))
     .reduce((sum, r) => sum + (parseInt(r.amount) || 0), 0);
 
   const giftCounts = {};
   recentRewards
-    .filter(r => !r.type.toLowerCase().includes('coin'))
+    .filter(r => !r.type?.toLowerCase().includes('coin'))
     .forEach(r => {
       const type = r.type;
-      giftCounts[type] = (giftCounts[type] || 0) + 1;
+      if (type) giftCounts[type] = (giftCounts[type] || 0) + 1;
     });
 
-  const todayDisplayDate = new Date().toLocaleDateString('en-US', { 
+  const todayDisplayDate = today.toLocaleDateString('en-US', { 
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
   });
 
-  // 🚀 REDIRECT TIMER LOGIC (same as solitaire version)
+  // 🚀 REDIRECT TIMER LOGIC
   useEffect(() => {
     if (!redirectReward) return;
     let seconds = 5;
@@ -47,11 +72,14 @@ export default function RewardSection() {
       if (seconds <= 0) {
         clearInterval(interval);
         
-        // Extract slug from reward_link
-        const slug = redirectReward.reward_link.replace('https://eccisland.is/mm-gifts/reward-link-', '');
-        
-        // REAL DESTINATION URL (match your PHP structure)
-        window.location.href = `https://eccisland.is/mm-gifts/reward-detail.php?slug=${slug}`;
+        try {
+          const slug = redirectReward.reward_link?.replace('https://eccisland.is/mm-gifts/reward-link-', '');
+          if (slug) {
+            window.location.href = `https://eccisland.is/mm-gifts/reward-detail.php?slug=${slug}`;
+          }
+        } catch (err) {
+          console.error('Redirect error:', err);
+        }
       }
     }, 1000);
 
@@ -61,6 +89,7 @@ export default function RewardSection() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       
+      {/* 🔥 SOLITAIRE STYLE HEADER (EXACT COPY) */}
       <div className="text-center mb-10">
         <h2 className="text-4xl md:text-5xl font-black text-gray-900 italic uppercase tracking-tighter">
           Today's Free Coin Links
@@ -79,7 +108,7 @@ export default function RewardSection() {
         </div>
       </div>
 
-      {/* GLOSSY BANNER - NO CHANGE */}
+      {/* GLOSSY BANNER - MM Style (unchanged) */}
       <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-[40px] p-6 md:p-10 mb-20 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between group border-b-8 border-b-blue-900">
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -125,9 +154,9 @@ export default function RewardSection() {
         </div>
       </div>
 
-      {/* REWARDS GRID - Pass onClaim handler */}
+      {/* REWARDS GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {rewards.map((reward) => (
+        {displayRewards.map((reward) => (
           <RewardCard 
             key={reward.id} 
             reward={reward} 
@@ -136,13 +165,14 @@ export default function RewardSection() {
         ))}
       </div>
 
-      {/* 🔥 REDIRECT MODAL (same as solitaire, but design untouched) */}
+      {/* REDIRECT MODAL */}
       {redirectReward && (
         <div className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 backdrop-blur-sm font-sans">
           <div className="bg-white rounded-[40px] p-10 max-w-sm w-full text-center border-b-8 border-green-600 shadow-2xl relative overflow-hidden">
             
             <div className="flex justify-center mb-4">
-               <img src="/gift.png" alt="Match Masters Free Gifts" className="w-24 h-24 object-contain animate-bounce" />
+               <img src="/dice-roll.webp" alt="Dice Roll" className="w-24 h-24 object-contain animate-bounce" 
+                    onError={(e) => e.target.style.display = 'none'} />
             </div>
 
             <h3 className="text-2xl font-black text-gray-900 uppercase italic">Preparing Link</h3>
