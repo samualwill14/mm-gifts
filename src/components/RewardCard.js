@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Timer, CheckCircle2, MousePointer2 } from 'lucide-react';
+import { Timer, MousePointer2 } from 'lucide-react';
 
-export default function RewardCard({ reward }) {
+export default function RewardCard({ reward, onClaim }) {
   const [isCollected, setIsCollected] = useState(false);
 
   useEffect(() => {
@@ -9,21 +9,20 @@ export default function RewardCard({ reward }) {
     if (collected) setIsCollected(true);
   }, [reward.id]);
 
-  const handleCollect = () => {
+  const handleCollectClick = () => {
+    if (isCollected) return;
     setIsCollected(true);
     localStorage.setItem(`mm_reward_${reward.id}`, 'true');
+    if (onClaim) onClaim(reward);
   };
 
-  // 📅 NEW ACCURATE DATE LOGIC
+  // 📅 DATE LOGIC (6 days filter)
   const rewardDate = new Date(reward.created_at);
   const today = new Date();
-  
-  // Cutoff set kar rahe hain: Aaj se thik 6 din pehle ki shuruat tak
   const cutoffDate = new Date();
   cutoffDate.setDate(today.getDate() - 6);
   cutoffDate.setHours(0, 0, 0, 0); 
 
-  // 1. Agar link 6 din se zyada purana hai toh hide kar do
   if (rewardDate < cutoffDate) return null; 
 
   const getTheme = (type) => {
@@ -32,7 +31,6 @@ export default function RewardCard({ reward }) {
     if (t.includes('booster')) return { bg: 'from-[#a855f7] to-[#7e22ce]', shadow: 'shadow-[0_8px_0_#581c87]', label: 'COLLECT BOOSTER' };
     if (t.includes('perk')) return { bg: 'from-[#22c55e] to-[#15803d]', shadow: 'shadow-[0_8px_0_#14532d]', label: 'COLLECT PERKS' };
     if (t.includes('sticker')) return { bg: 'from-[#ec4899] to-[#be185d]', shadow: 'shadow-[0_8px_0_#831843]', label: 'COLLECT STICKER' };
-
     return { bg: 'from-[#3b82f6] to-[#2563eb]', shadow: 'shadow-[0_8px_0_#1e3a8a]', label: 'COLLECT REWARD' };
   };
 
@@ -74,20 +72,18 @@ export default function RewardCard({ reward }) {
         </div>
       </div>
 
-      {/* 🚀 THE 3D BUTTON (ALWAYS CLICKABLE & COLORFUL) 🚀 */}
-      <a
-        href={reward.reward_link}
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-        onClick={handleCollect}
-        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center no-underline flex items-center justify-center gap-2 border-t-2 border-white/30 ${
+      {/* 🚀 BUTTON - NOW TRIGGERS TIMER MODAL instead of direct link */}
+      <button
+        onClick={handleCollectClick}
+        disabled={isCollected}
+        className={`w-full py-4 rounded-full font-black text-white text-sm transition-all text-center flex items-center justify-center gap-2 border-t-2 border-white/30 ${
           isCollected 
-            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80' 
+            ? 'bg-emerald-500 shadow-none translate-y-[4px] opacity-80 cursor-not-allowed' 
             : `bg-gradient-to-r ${theme.bg} ${theme.shadow} hover:brightness-105 active:shadow-none active:translate-y-[8px]`
         }`}
       >
-        {isCollected ? <><CheckCircle2 size={18}/> COLLECTED</> : theme.label}
-      </a>
+        {isCollected ? '✓ COLLECTED' : theme.label}
+      </button>
 
       <p className="mt-5 text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">
         {formattedDate}
