@@ -60,13 +60,23 @@ export default function RewardSection() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-6xl font-[1000] text-[#0f172a] tracking-tight mb-2 uppercase">
-          Today's Match Masters Rewards
+      
+      <div className="text-center mb-10">
+        <h2 className="text-4xl md:text-5xl font-black text-gray-900 italic uppercase tracking-tighter">
+          Today's Free Coin Links
         </h2>
-        <p className="text-blue-600 font-black text-xs uppercase tracking-[0.25em] italic">
-          Last Verified Update: {todayDisplayDate}
+        <p className="text-gray-400 mt-4 max-w-xl mx-auto font-medium text-lg">
+          Click collect to claim your free Solitaire Grand Harvest coins. Links are daily updated.
         </p>
+        <div className="mt-4 flex flex-col items-center gap-1">
+          <p className="text-green-600 font-black text-xs uppercase tracking-widest">
+            {displayRewards.length} rewards available — click Collect to claim
+          </p>
+          <p className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.2em]">
+            Last updated: {lastUpdateTime}
+          </p>
+          <div className="w-16 h-1 bg-green-500 rounded-full mt-2 shadow-[0_0_10px_rgba(34,197,94,0.4)]"></div>
+        </div>
       </div>
 
       {/* GLOSSY BANNER - NO CHANGE */}
