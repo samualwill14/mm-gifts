@@ -41,6 +41,42 @@ export default function Home({ currentDate }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MM Free Gifts" />
         <link rel="manifest" href="/site.webmanifest" />
+
+         {/* Google Analytics Scripts */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-288PZPRDVH"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-288PZPRDVH');
+        `}
+      </Script>
+
+        {/* JSON-LD Schema */}
+      <Script id="breadcrumb-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://mmfreegifts.de"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Free Coins",
+              "item": "https://mmfreegifts.de/#free-gifts"
+            }
+          ]
+        })}
+      </Script>
       </Head>
 
       {/* 1. NOTIFICATION BAR */}
