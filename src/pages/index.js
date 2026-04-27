@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Script from 'next/script';
 import NotificationBar from '@/components/NotificationBar';
 import Navbar from '@/components/Navbar';
 import RewardSection from '@/components/RewardSection';
