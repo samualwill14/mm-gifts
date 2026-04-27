@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RewardCard from './RewardCard';
 import { staticRewards } from '@/data/static-rewards';
 
 export default function RewardSection() {
   const [rewards] = useState(staticRewards || []);
+  const [redirectReward, setRedirectReward] = useState(null);
 
   // 📅 LOGIC: Banner calculation (Sirf Aaj aur Kal ka total)
   const today = new Date();
@@ -32,6 +33,31 @@ export default function RewardSection() {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
   });
 
+  // 🚀 REDIRECT TIMER LOGIC (same as solitaire version)
+  useEffect(() => {
+    if (!redirectReward) return;
+    let seconds = 5;
+    const interval = setInterval(() => {
+      seconds--;
+      const el = document.getElementById('countdownDisplay');
+      const bar = document.getElementById('progressBar');
+      if (el) el.textContent = seconds;
+      if (bar) bar.style.width = `${((5 - seconds) / 5) * 100}%`;
+      
+      if (seconds <= 0) {
+        clearInterval(interval);
+        
+        // Extract slug from reward_link
+        const slug = redirectReward.reward_link.replace('https://eccisland.is/mm-gifts/reward-link-', '');
+        
+        // REAL DESTINATION URL (match your PHP structure)
+        window.location.href = `https://eccisland.is/mm-gifts/reward-detail.php?slug=${slug}`;
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [redirectReward]);
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
@@ -43,7 +69,7 @@ export default function RewardSection() {
         </p>
       </div>
 
-      {/* 🚀 ORIGINAL GLOSSY BANNER (Size & Design Restored) 🚀 */}
+      {/* GLOSSY BANNER - NO CHANGE */}
       <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-[40px] p-6 md:p-10 mb-20 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between group border-b-8 border-b-blue-900">
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -89,12 +115,43 @@ export default function RewardSection() {
         </div>
       </div>
 
-      {/* REWARDS GRID */}
+      {/* REWARDS GRID - Pass onClaim handler */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {rewards.map((reward) => (
-          <RewardCard key={reward.id} reward={reward} />
+          <RewardCard 
+            key={reward.id} 
+            reward={reward} 
+            onClaim={() => setRedirectReward(reward)} 
+          />
         ))}
       </div>
+
+      {/* 🔥 REDIRECT MODAL (same as solitaire, but design untouched) */}
+      {redirectReward && (
+        <div className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 backdrop-blur-sm font-sans">
+          <div className="bg-white rounded-[40px] p-10 max-w-sm w-full text-center border-b-8 border-green-600 shadow-2xl relative overflow-hidden">
+            
+            <div className="flex justify-center mb-4">
+               <img src="/dice-roll.webp" alt="Dice Roll" className="w-24 h-24 object-contain animate-bounce" />
+            </div>
+
+            <h3 className="text-2xl font-black text-gray-900 uppercase italic">Preparing Link</h3>
+            <p className="text-gray-500 font-bold text-[10px] uppercase tracking-widest mt-2">
+              Collecting {redirectReward.amount} {redirectReward.type}
+            </p>
+            
+            <p className="text-6xl font-black text-green-600 my-6" id="countdownDisplay">5</p>
+            
+            <div className="w-full bg-gray-100 rounded-full h-3 mb-8 overflow-hidden">
+              <div id="progressBar" className="bg-green-600 h-full transition-all duration-1000 ease-linear" style={{ width: '0%' }}></div>
+            </div>
+            
+            <button onClick={() => setRedirectReward(null)} className="text-gray-400 font-black text-[10px] uppercase tracking-[0.3em] hover:text-red-500 transition-colors">
+              Cancel Process
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
