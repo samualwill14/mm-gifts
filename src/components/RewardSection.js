@@ -132,7 +132,7 @@ export default function RewardSection() {
           <div className="bg-white rounded-[40px] p-10 max-w-sm w-full text-center border-b-8 border-green-600 shadow-2xl relative overflow-hidden">
             
             <div className="flex justify-center mb-4">
-               <img src="/dice-roll.webp" alt="Dice Roll" className="w-24 h-24 object-contain animate-bounce" />
+               <img src="/gift.png" alt="Dice Roll" className="w-24 h-24 object-contain animate-bounce" />
             </div>
 
             <h3 className="text-2xl font-black text-gray-900 uppercase italic">Preparing Link</h3>
