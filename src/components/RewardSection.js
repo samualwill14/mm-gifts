@@ -91,10 +91,10 @@ export default function RewardSection() {
       
       <div className="text-center mb-10">
         <h2 className="text-4xl md:text-5xl font-black text-gray-900 italic uppercase tracking-tighter">
-          Today's Free Coin Links
+          Today's Free Gift Links
         </h2>
         <p className="text-gray-400 mt-4 max-w-xl mx-auto font-medium text-lg">
-          Click collect to claim your free Match Masters Gifts, Boosters, Perks, Coins, Stickers & Keys. Links are daily updated.
+          Click collect to claim your free Match Masters Boosters, Coins, Stickers & Keys codes. Links are daily updated.
         </p>
         <div className="mt-4 flex flex-col items-center gap-1">
           <p className="text-green-600 font-black text-xs uppercase tracking-widest">
