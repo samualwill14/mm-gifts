@@ -985,8 +985,7 @@ export default function Home({ currentDate }) {
                 Ready to dominate Match Masters? Claim your daily gifts now and start your strategic journey to the top!
               </p>
 
-            </div>
-          </section>
+
         </main>
 
         <Footer />
