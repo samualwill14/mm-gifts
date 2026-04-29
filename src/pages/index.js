@@ -795,6 +795,7 @@ The latest good news is that Match Masters is providing gifts on a daily basis f
       q: "What is the difference between Match Masters keys, codes, and gift links?",
       a: "Keys and codes are commonly used terms by players, but the actual system relies on gift links. These links instantly provide rewards like coins and boosters without requiring manual code entry."
     }
+    
   ].map((item, index) => (
     <div key={index} className="bg-blue-50 p-6 rounded-2xl border border-blue-100 shadow-sm">
       <h3 className="font-bold text-gray-900 mb-3 text-center">{item.q}</h3>
@@ -803,13 +804,6 @@ The latest good news is that Match Masters is providing gifts on a daily basis f
   ))}
 </div>
 
-  ].map((faq, idx) => (
-    <div key={idx} className="bg-blue-50 p-6 rounded-2xl border border-blue-100 shadow-sm">
-      <h3 className="font-bold text-blue-900 mb-3">{faq.q}</h3>
-      <p className="text-gray-700 text-base">{faq.a}</p>
-    </div>
-  ))}
-</div>
 
               <p className="text-center font-bold text-2xl mt-20 text-blue-900 italic">
                 Ready to dominate Match Masters? Claim your daily gifts now and start your strategic journey to the top!
