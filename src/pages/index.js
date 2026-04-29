@@ -428,28 +428,23 @@ export default function Home({ currentDate }) {
                 </p>
               </div>
 
-             import { Info } from "lucide-react";
-
-export default function GiftAlert() {
-  return (
-    <div className="max-w-4xl mx-auto p-4">
-      {/* Alert Box */}
-      <div className="flex items-center gap-3 bg-blue-50/50 border border-blue-200 rounded-xl p-4 text-slate-700 shadow-sm">
-        <div className="bg-blue-100 p-1.5 rounded-full">
-          <Info className="w-5 h-5 text-blue-600" />
-        </div>
-        <p className="text-sm md:text-base">
-          <span className="font-bold text-slate-900">Update: 2026</span> — We check free coins links daily so you only see working bonuses here.
-        </p>
-      </div>
-
-      {/* Paragraph Text */}
-      <p className="mt-6 text-gray-600 leading-relaxed text-base md:text-lg">
-        This guide contains current <span className="font-semibold text-gray-900 underline decoration-blue-200 decoration-2 underline-offset-4">Match Masters free gifts</span> links for 2026. Use these links to get free coins, boosters, stickers, perks, and rewards in the popular matching game.
-      </p>
+             {/* Alert Box Start */}
+<div className="max-w-4xl mx-auto p-4">
+  <div className="flex items-center gap-3 bg-blue-50/50 border border-blue-200 rounded-xl p-4 text-slate-700 shadow-sm">
+    <div className="bg-blue-100 p-1.5 rounded-full">
+      {/* Agar Lucide use nahi kar rahe to ye simple SVG icon hai */}
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
     </div>
-  );
-}
+    <p className="text-sm md:text-base">
+      <span className="font-bold text-slate-900">Update: 2026</span> — We check free coins links daily so you only see working bonuses here.
+    </p>
+  </div>
+
+  <p className="mt-6 text-gray-600 leading-relaxed text-base md:text-lg">
+    This guide contains current <span className="font-semibold text-gray-900 underline decoration-blue-200 decoration-2 underline-offset-4">Match Masters free gifts</span> links for 2026. Use these links to get free coins, boosters, stickers, perks and rewards in the popular matching game.
+  </p>
+</div>
+{/* Alert Box End */}
 
               <div className="bg-emerald-50 p-8 md:p-12 rounded-[32px] border border-emerald-100 mb-16 text-center">
                 <h2 className="text-3xl font-bold mb-6 text-emerald-900">Claim Match Masters Free Daily Gifts: Improve your game with updated gift links Today!</h2>
