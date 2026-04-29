@@ -288,33 +288,7 @@ export default function Home({ currentDate }) {
               </p>
             </section>
 
-            <section className="mb-10 bg-slate-900 text-white p-8 rounded-2xl shadow-xl">
-              <h2 className="text-2xl font-bold mb-4 text-blue-400">Earn Money for Match Masters Through Paidwork</h2>
-              <p className="mb-6 opacity-90">While free gifts links are great, you can also earn real money through Paidwork to purchase boosters, stickers, or other Match Masters content:</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                <div className="bg-slate-800 p-4 rounded-lg">
-                  <span className="block font-bold text-xl text-green-400">Surveys</span>
-                  <span className="text-sm">$0.50-$5+ per survey</span>
-                </div>
-                <div className="bg-slate-800 p-4 rounded-lg">
-                  <span className="block font-bold text-xl text-green-400">Games</span>
-                  <span className="text-sm">$5-$50+ rewards</span>
-                </div>
-                <div className="bg-slate-800 p-4 rounded-lg">
-                  <span className="block font-bold text-xl text-green-400">Offers</span>
-                  <span className="text-sm">$20-$200+ pay</span>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-                <svg className="w-6 h-6 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-                <p className="text-sm">
-                  <span className="font-bold text-yellow-400 uppercase">Pro Tip:</span> Free gifts links in Match Masters are limited. 
-                  For purchasing additional boosters, consider earning through Paidwork. With regular activity, you can earn $100-$300+ monthly!
-                </p>
-              </div>
-            </section>
+            
           </div>
 
           <div className="max-w-6xl mx-auto px-4">
