@@ -428,23 +428,183 @@ export default function Home({ currentDate }) {
                 </p>
               </div>
 
-             {/* Alert Box Start */}
-<div className="max-w-4xl mx-auto p-4">
-  <div className="flex items-center gap-3 bg-blue-50/50 border border-blue-200 rounded-xl p-4 text-slate-700 shadow-sm">
-    <div className="bg-blue-100 p-1.5 rounded-full">
-      {/* Agar Lucide use nahi kar rahe to ye simple SVG icon hai */}
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-    </div>
-    <p className="text-sm md:text-base">
-      <span className="font-bold text-slate-900">Update: 2026</span> — We check free coins links daily so you only see working bonuses here.
-    </p>
-  </div>
+            import React from 'react';
+import { Info, CheckCircle, Gift, HelpCircle, Lightbulb } from 'lucide-react';
 
-  <p className="mt-6 text-gray-600 leading-relaxed text-base md:text-lg">
-    This guide contains current <span className="font-semibold text-gray-900 underline decoration-blue-200 decoration-2 underline-offset-4">Match Masters free gifts</span> links for 2026. Use these links to get free coins, boosters, stickers, perks and rewards in the popular matching game.
-  </p>
-</div>
-{/* Alert Box End */}
+export default function MatchMastersGuide() {
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8 text-slate-800 leading-relaxed">
+      
+      {/* 1. Intro Section */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-bold mb-4">About Match Masters Free Gifts</h2>
+        <p className="text-gray-600">
+          Match Masters is a popular mobile match-3 puzzle game with competitive multiplayer elements. 
+          Free gifts links are shared by the developers and community to give players additional coins, 
+          boosters, and rewards to help them win matches.
+        </p>
+      </section>
+
+      {/* 2. Alert Box (Same as requested before) */}
+      <div className="mb-10 flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-sm">
+        <Info className="w-6 h-6 text-blue-600 flex-shrink-0" />
+        <p className="text-sm md:text-base">
+          <span className="font-bold text-slate-900">Update: 2026</span> — We check free gifts links daily so you only see working bonuses here.
+        </p>
+      </div>
+
+      {/* 3. New Links Daily Section */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-bold mb-4">Match Masters Free Gifts – New Links Daily</h2>
+        <p className="mb-4">
+          The creators of Match Masters regularly share free gifts links that work like small presents for players. 
+          Click a link and when you open the game, coins, boosters, or stickers will be added to your account. 
+          Each link is tied to your in-game account. After clicking, the system automatically detects your account 
+          and adds the reward—no extra steps needed. Links usually stay active for 24 to 72 hours, then they expire. 
+          It's worth checking daily and not saving them for later.
+        </p>
+        <p>
+          Usually each link can only be used once per account. After you click and claim the reward, the link 
+          becomes inactive for you even if it still works for others. Some links may also be region-locked 
+          and only work in certain countries or on specific platforms (e.g. Android, iOS).
+        </p>
+      </section>
+
+      {/* 4. How to Claim */}
+      <section className="mb-10 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          <CheckCircle className="text-green-600" /> How to Claim Free Gifts? Simple Steps
+        </h2>
+        <ol className="list-decimal ml-6 space-y-3 mb-6">
+          <li>Find a current link (e.g. from our daily updated list).</li>
+          <li>Click it—ideally on the device you use to play. The game will open and the bonus will be added. Done!</li>
+        </ol>
+        <p className="font-semibold mb-2">What you need to claim free Match Masters rewards:</p>
+        <ul className="list-disc ml-6 space-y-1 text-gray-600">
+          <li>The latest version of Match Masters installed.</li>
+          <li>A game account linked to Facebook or Google Play.</li>
+          <li>A device with internet access (phone, tablet, or computer).</li>
+        </ul>
+        <p className="mt-4 text-sm italic text-gray-500">
+          If a link has expired, you will be redirected to the game but will not receive a reward. 
+          Match Masters often does not clearly say that a link has expired, so it's better to check when links were added.
+        </p>
+      </section>
+
+      {/* 5. How to Get (List) */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-bold mb-4">How to Get Free Gifts</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            "Use free gifts links from developers",
+            "Complete daily missions and tasks",
+            "Watch video advertisements",
+            "Participate in special events",
+            "Level up and reach milestones"
+          ].map((item, i) => (
+            <li key={i} className="flex items-center gap-2 bg-white border p-3 rounded-lg shadow-sm">
+              <Gift className="w-5 h-5 text-pink-500" /> {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* 6. Other Ways */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-bold mb-4">Other Ways to Get Free Gifts in Match Masters</h2>
+        <p className="mb-4">To grow your reward stash regularly, use the features available directly in the game:</p>
+        <div className="space-y-4">
+          <p><strong>Lucky Spin</strong> — Available once per day. Spin the wheel and claim your reward—coins, boosters, or other useful extras.</p>
+          <p><strong>Daily Login</strong> — Every day you log in you get a new gift. The longer your streak, the bigger the rewards!</p>
+          <p><strong>Sticker Sets</strong> — Completing sticker albums is one of the best ways to get massive coin and booster rewards.</p>
+          <p><strong>Seasonal Events</strong> — The game often runs limited-time events with themed rewards. Take part to earn bigger payouts and unique perks.</p>
+          <p><strong>Invite Friends for More Rewards</strong> — Invite friends to play and you can earn coins, boosters, and unique rewards when they are active in Match Masters.</p>
+        </div>
+      </section>
+
+      {/* 7. REWARD KEY CODES SECTION (NEW) */}
+      <section className="mb-10 bg-blue-50/30 border border-blue-100 p-6 rounded-2xl">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+          <HelpCircle className="text-blue-600" /> 🎯 Match Masters – Keys, Codes & Promo Queries
+        </h2>
+        
+        <div className="space-y-6">
+          <div>
+            <h3 className="font-bold text-slate-900">1. What are Match Masters keys?</h3>
+            <p className="text-gray-600 mt-1">Match Masters keys are reward-based items often confused with gift links or promo codes. In most cases, players use the term “keys” to refer to free rewards like boosters, coins, or spins distributed through official gift links.</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-slate-900">2. How can I get Match Masters free keys?</h3>
+            <p className="text-gray-600 mt-1">There is no separate system for free keys, but players can get similar rewards through daily gift links, events, and bonuses. Our platform regularly shares updated rewards that players often refer to as “keys.”</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-slate-900">3. Are Match Masters free key codes real?</h3>
+            <p className="text-gray-600 mt-1">Most “free key codes” are not official. Match Masters primarily uses clickable reward links instead of traditional codes, so any site claiming unlimited key codes should be treated carefully.</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-slate-900">4. Do Match Masters promo codes exist?</h3>
+            <p className="text-gray-600 mt-1">Match Masters rarely uses promo codes. Instead, rewards are distributed via direct claim links, which are easier to use and updated frequently on trusted platforms.</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-slate-900">5. Where can I find Match Masters promo codes or keys?</h3>
+            <p className="text-gray-600 mt-1">You can find the latest rewards (often called keys or codes) on official channels and trusted aggregators like ours, which update links multiple times daily.</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-slate-900">6. What is the difference between Match Masters keys, codes, and gift links?</h3>
+            <p className="text-gray-600 mt-1">Keys and codes are commonly used terms by players, but the actual system relies on gift links. These links instantly provide rewards like coins and boosters without requiring manual code entry.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Troubleshooting */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-bold mb-4">Free Gifts Links Don't Work – What to Do?</h2>
+        <p className="mb-4">
+          If a free gifts link doesn't work, first check that it hasn't expired. Most links are active for 24 to 72 hours, 
+          so check our list daily to stay up to date. You can also make sure you're logged into the correct game account, 
+          or try opening the link in a different browser or device.
+        </p>
+        <p>
+          To avoid errors when claiming rewards: don't click suspicious links from outside official sources or our list, 
+          and keep your game updated. Also link your account to Facebook to avoid losing progress and bonuses.
+        </p>
+      </section>
+
+      {/* 9. Paidwork Section */}
+      <section className="mb-10 bg-slate-900 text-white p-8 rounded-2xl shadow-xl">
+        <h2 className="text-2xl font-bold mb-4 text-blue-400">Earn Money for Match Masters Through Paidwork</h2>
+        <p className="mb-6 opacity-90">While free gifts links are great, you can also earn real money through Paidwork to purchase boosters, stickers, or other Match Masters content:</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div className="bg-slate-800 p-4 rounded-lg">
+            <span className="block font-bold text-xl text-green-400">Surveys</span>
+            <span className="text-sm">$0.50-$5+ per survey</span>
+          </div>
+          <div className="bg-slate-800 p-4 rounded-lg">
+            <span className="block font-bold text-xl text-green-400">Games</span>
+            <span className="text-sm">$5-$50+ rewards</span>
+          </div>
+          <div className="bg-slate-800 p-4 rounded-lg">
+            <span className="block font-bold text-xl text-green-400">Offers</span>
+            <span className="text-sm">$20-$200+ pay</span>
+          </div>
+        </div>
+        <div className="flex items-start gap-3 bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+          <Lightbulb className="text-yellow-400 w-6 h-6 flex-shrink-0" />
+          <p className="text-sm">
+            <span className="font-bold text-yellow-400 uppercase">Pro Tip:</span> Free gifts links in Match Masters are limited. 
+            For purchasing additional boosters, consider earning through Paidwork. With regular activity, you can earn $100-$300+ monthly!
+          </p>
+        </div>
+      </section>
+
+    </div>
+  );
+}
 
               <div className="bg-emerald-50 p-8 md:p-12 rounded-[32px] border border-emerald-100 mb-16 text-center">
                 <h2 className="text-3xl font-bold mb-6 text-emerald-900">Claim Match Masters Free Daily Gifts: Improve your game with updated gift links Today!</h2>
