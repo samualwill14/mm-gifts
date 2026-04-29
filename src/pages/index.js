@@ -78,6 +78,255 @@ export default function Home({ currentDate }) {
           ]
         })}
       </Script>
+
+        <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can I get free daily gifts in Match Masters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can get free daily gifts in Match Masters through reward links, in-game bonuses, social media drops, and event rewards. Platforms like mmfreegifts.de regularly update working links, making it one of the easiest ways to claim gifts consistently."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Match Masters free gift links safe to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, free gift links are safe if they come from trusted or official sources. Reliable websites like mmfreegifts.de verify links before publishing, reducing risks of fake rewards or malicious redirects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Match Masters free gift links expire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, most free gift links expire within 24–72 hours. That's why regularly checking frequently updated sources like mmfreegifts.de is important to avoid missing active rewards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I find updated Match Masters free gift links?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can find updated links on official pages, forums, and dedicated sites like mmfreegifts.de, which track and publish new links multiple times a day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I redeem Match Masters free gift links?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click the gift link on your mobile device with the game installed. The game will automatically open and add rewards to your account without requiring manual code entry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What rewards do Match Masters free gifts include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Free gifts usually include coins, boosters, spins, and stickers. These rewards help improve gameplay performance and progression, especially during competitive matches."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often are new free gift links released?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "New links are released daily or multiple times per week. Active tracking platforms like mmfreegifts.de ensure you don't miss newly released rewards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I claim multiple gift links in one day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can claim multiple links in a single day as long as they are active and not previously redeemed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my Match Masters gift link not working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gift links may fail due to expiration, prior redemption, or invalid sources. Always use updated links from trusted platforms to avoid errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do free gifts differ for new and old players?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, new players often receive better starter rewards, while existing players get event-based or loyalty rewards depending on activity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best way to maximize free gifts in Match Masters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The best approach is combining daily links, event participation, and smart booster usage. Consistent tracking via trusted sources helps maximize rewards without spending money."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there unlimited free gifts in Match Masters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, unlimited gifts do not exist. However, consistent claiming and efficient gameplay strategies can provide a steady flow of rewards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Match Masters events give free gifts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, events offer large rewards including boosters, coins, and exclusive items, making them one of the best earning opportunities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do boosters from free gifts help in gameplay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Boosters increase your chances of winning matches, allowing faster progression and better reward accumulation over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best strategy to use free boosters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use boosters in difficult matches or competitive modes where rewards are higher to maximize their value."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get free gifts by inviting friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, inviting friends often rewards you with bonus gifts when they join and play actively."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do social media pages share free gifts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, official pages frequently post reward links, but curated platforms collect them in one place for convenience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there promo codes for Match Masters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Match Masters mainly uses clickable reward links instead of traditional promo codes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why am I not receiving free gifts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This usually happens due to expired links, missed updates, or using invalid sources. Always check active links daily."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if I missed a gift link?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you miss a link, wait for new ones or participate in events to recover rewards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some gift links give different rewards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rewards vary based on promotions, events, and player level, so not all links provide the same benefits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do free gifts help win more matches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, gifts provide boosters and resources that significantly improve gameplay performance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do rewards stay after claiming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most rewards stay permanently until used, while some boosters may have time limits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are third-party reward websites reliable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some are reliable, especially frequently updated platforms that verify links before publishing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the safest way to get free gifts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The safest way is using official sources and trusted aggregators like mmfreegifts.de."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to track latest Match Masters gift links automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can track links automatically by bookmarking frequently updated sites like mmfreegifts.de or enabling notifications for updates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Match Masters gifts reset daily?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, many rewards reset daily, especially login bonuses and newly released gift links."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you save free gifts for later use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most rewards are added instantly and can be used later, but some boosters may have expiration limits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which boosters are most valuable from free gifts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "High-impact boosters that improve match-winning chances are the most valuable, especially in competitive modes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do higher levels get better free rewards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, higher-level players often receive better rewards through events and progression-based bonuses."
+      }
+    }
+  ]
+}
+</script>
       </Head>
 
       {/* 1. NOTIFICATION BAR */}
