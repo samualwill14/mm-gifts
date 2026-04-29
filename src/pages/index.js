@@ -424,12 +424,14 @@ export default function Home({ currentDate }) {
               
               <div className="max-w-4xl mx-auto mb-16">
                 <p className="mb-6">
-The latest good news is that Match Masters is providing gifts on a daily basis for its players. Lots of gifts are being distributed among interested players, like free coins, stickers, spins, boosters, diamond boosters, and much more. If you are interested in achieving these rewards, then you have landed on the right page.
-                </p>
-                <p className="mb-6">
-                  Match Masters is an engaging game that you can play with your friends, forgetting the worries of the real world. The game is a perfect platform to enjoy virtual gaming while earning lots of Match Masters free daily gifts. It adds a perfect competitive element to your gaming, where players battle in real time to score the highest points. To beat the players, having more and more gifts is important.
+                Match Masters is a unique game that combines competitive PvP matches with exciting collectible stickers and power-ups. As you progress, you need more and more coins, perks, boosters, and reward keys to unlock new arenas and stay ahead of rivals. There are many ways to get free Match Masters gifts every day! Below you will find a practical guide to current links, in-game features, and tips to make the most of every opportunity—so you never run out of boosters, coins, or reward keys.
                 </p>
               </div>
+
+             <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Update: 2026</strong> — We check free coins links daily so you only see working bonuses here.                    </div>
+                    <p>This guide contains current Solitaire Grand Harvest free coins links for 2026. Use these links to get free coins and rewards in the popular solitaire game.</p>
 
               <div className="bg-emerald-50 p-8 md:p-12 rounded-[32px] border border-emerald-100 mb-16 text-center">
                 <h2 className="text-3xl font-bold mb-6 text-emerald-900">Claim Match Masters Free Daily Gifts: Improve your game with updated gift links Today!</h2>
