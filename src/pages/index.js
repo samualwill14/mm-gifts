@@ -146,7 +146,7 @@ export default function Home({ currentDate }) {
           {/* MAIN CONTENT AREA FIXED WIDTH */}
           <div className="max-w-4xl mx-auto px-4">
             
-            <section className="py-16 text-gray-800 text-lg leading-relaxed">
+            <section className="text-gray-800 text-lg leading-relaxed">
               <p className="mb-6">
                 Match Masters is a unique game that combines competitive PvP matches with exciting collectible stickers and power-ups. As you progress, you need more and more coins, perks, boosters, and reward keys to unlock new arenas and stay ahead of rivals. There are many ways to get free Match Masters gifts every day! Below you will find a practical guide to current links, in-game features, and tips to make the most of every opportunity—so you never run out of boosters, coins, or reward keys.
               </p>
