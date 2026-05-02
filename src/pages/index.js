@@ -21,19 +21,19 @@ export default function Home({ currentDate }) {
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
       <Head>
-        <title>{`Match Masters Free Daily Gifts (April 2026) | Collect Boosters, Coins & Keys`}</title>
-        <meta name="description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Keys, Stickers, Rewards & Codes. Collect the exclusive gifts with daily updated links." />
+        <title>{`Match Masters Free Daily Gifts (April 2026) | Collect Boosters, Coins & Reward Keys`}</title>
+        <meta name="description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Stickers & Rewards Keys Codes. Collect the exclusive gifts with daily updated links." />
         <link rel="canonical" href="https://mmfreegifts.de/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
-        <meta property="og:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <meta property="og:description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Stickers & Rewards Keys Codes. Collect the exclusive gifts with daily updated links." />
         <meta property="og:url" content="https://mmfreegifts.de/" />
         <meta property="og:site_name" content="MM Free Gifts" />
         <meta property="og:image" content="/gift.png" />
         <meta property="og:image:alt" content="Match Masters Free Gifts Daily Rewards" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`Match Masters Free Gifts & Coins | Today's Free Gifts [${currentDate}]`} />
-        <meta name="twitter:description" content="Collect your Match Masters free gifts, boosters, coins, perks, stickers and other rewards. Working gift links updated daily." />
+        <meta name="twitter:description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Stickers & Rewards Keys Codes. Collect the exclusive gifts with daily updated links." />
         <meta name="twitter:image" content="/gift.png" />
 
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
