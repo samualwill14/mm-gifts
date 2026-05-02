@@ -140,7 +140,7 @@ export default function RewardSection() {
 
         <div className="mt-6 md:mt-0 relative z-10">
           <a
-            href="https://www.google.com/url?q=https://eccisland.is/mm-gifts&usg=AOvVaw1iP6IL6JKul_mDyI9YDonZ"
+            href="https://www.google.com/url?q=https%3A%2F%2Feccisland.is%2Fmmkeys&sa=D&sntz=1&usg=AOvVaw37XV4lAlITcFouCTOUofBI"
             rel="nofollow noopener noreferrer"
             target="_blank"
             className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-black py-2.5 px-5 rounded-full shadow-md hover:translate-y-[2px] transition-all text-sm md:text-base uppercase"
@@ -148,7 +148,7 @@ export default function RewardSection() {
             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v10m0 0l-4-4m4 4l4-4M4 20h16" />
             </svg>
-            Download & Collect
+            Free Reward Keys
           </a>
         </div>
       </div>
