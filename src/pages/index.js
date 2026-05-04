@@ -21,7 +21,7 @@ export default function Home({ currentDate }) {
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       
       <Head>
-        <title>{`Match Masters Free Daily Gifts (April 2026) | Collect Boosters, Coins & Reward Keys`}</title>
+        <title>{`Match Masters Free Daily Gifts (May 2026) | Collect Boosters, Coins & Reward Keys`}</title>
         <meta name="description" content="Get daily Match Masters Free Gifts, Coins, Boosters, Perks, Stickers & Rewards Keys Codes. Collect the exclusive gifts with daily updated links." />
         <link rel="canonical" href="https://mmfreegifts.de/" />
         <meta property="og:type" content="website" />
